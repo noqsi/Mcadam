@@ -1,0 +1,157 @@
+v 20200319 2
+B 300 300 2200 2400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 2500 2600 9 10 0 0 0 0 1
+source=FastShaper.2.sch
+T 2500 2800 9 10 0 0 0 0 1
+source=FastShaper.1.sch
+T 2500 3000 9 10 0 0 0 0 1
+description=Pulse detection subsystem
+T 2500 3200 9 10 0 0 0 0 1
+device=Shaper
+T 2500 3400 9 10 0 0 0 0 1
+distlicense=GPL
+T 2500 3600 9 10 0 0 0 0 1
+uselicense=unlimited
+T 2500 3800 9 10 0 0 0 0 1
+author=jpd@noqsi.com
+T 2500 4000 9 10 0 0 0 0 1
+copyright=2011, 2020 John P. Doty
+T 1400 2100 9 10 1 1 0 3 1
+refdes=X?
+T 1400 1500 9 10 1 1 0 3 2
+Fast
+Shaper
+P 0 2300 300 2300 1 0 0
+{
+T 350 2300 9 10 1 1 0 1 1
+pinlabel=IN
+T 200 2350 5 8 0 1 0 6 1
+pinnumber=1
+T 200 2350 5 8 0 1 0 6 1
+pinseq=1
+T 200 2350 9 10 0 1 0 6 1
+pintype=pas
+}
+P 2800 1200 2500 1200 1 0 0
+{
+T 2450 1200 9 10 1 1 0 7 1
+pinlabel=TRIG
+T 2600 1250 5 8 0 1 0 0 1
+pinnumber=2
+T 2600 1250 5 8 0 1 0 0 1
+pinseq=2
+T 2400 1250 9 10 0 1 0 6 1
+pintype=pas
+}
+P 2800 900 2500 900 1 0 0
+{
+T 2450 900 9 10 1 1 0 7 1
+pinlabel=ZX
+T 2600 950 5 8 0 1 0 0 1
+pinnumber=3
+T 2600 950 5 8 0 1 0 0 1
+pinseq=3
+T 2400 950 9 10 0 1 0 6 1
+pintype=pas
+}
+P 0 1900 300 1900 1 0 0
+{
+T 350 1900 9 10 1 1 0 1 1
+pinlabel=VLLD
+T 200 1950 5 8 0 1 0 6 1
+pinnumber=4
+T 200 1950 5 8 0 1 0 6 1
+pinseq=4
+T 200 1950 9 10 0 1 0 6 1
+pintype=pas
+}
+P 1400 3000 1400 2700 1 0 0
+{
+T 1400 2650 9 10 1 1 0 5 1
+pinlabel=+3.3A
+T 1450 2750 5 8 0 1 0 0 1
+pinnumber=6
+T 1450 2750 5 8 0 1 0 0 1
+pinseq=6
+T 1300 450 9 10 0 1 0 6 1
+pintype=pas
+}
+P 2100 3000 2100 2700 1 0 0
+{
+T 2100 2650 9 10 1 1 0 5 1
+pinlabel=+3.3D
+T 2150 2750 5 8 0 1 0 0 1
+pinnumber=7
+T 2150 2750 5 8 0 1 0 0 1
+pinseq=7
+T 2000 450 9 10 0 1 0 6 1
+pintype=pas
+}
+P 1400 0 1400 300 1 0 0
+{
+T 1400 350 9 10 1 1 0 3 1
+pinlabel=GND
+T 1450 250 5 8 0 1 0 2 1
+pinnumber=8
+T 1450 250 5 8 0 1 0 2 1
+pinseq=8
+T 1300 50 9 10 0 1 0 6 1
+pintype=pas
+}
+P 2800 2300 2500 2300 1 0 0
+{
+T 2450 2300 9 10 1 1 0 7 1
+pinlabel=SCK
+T 2600 2350 5 8 0 1 0 0 1
+pinnumber=9
+T 2600 2350 5 8 0 1 0 0 1
+pinseq=9
+T 2400 2350 9 10 0 1 0 6 1
+pintype=in
+}
+P 2800 2000 2500 2000 1 0 0
+{
+T 2450 2000 9 10 1 1 0 7 1
+pinlabel=SDO
+T 2600 2050 5 8 0 1 0 0 1
+pinnumber=10
+T 2600 2050 5 8 0 1 0 0 1
+pinseq=10
+T 2400 2050 9 10 0 1 0 6 1
+pintype=out
+}
+P 0 1500 300 1500 1 0 0
+{
+T 350 1500 9 10 1 1 0 1 1
+pinlabel=VB
+T 200 1550 5 8 0 1 0 6 1
+pinnumber=11
+T 200 1550 5 8 0 1 0 6 1
+pinseq=11
+T 200 1550 9 10 0 1 0 6 1
+pintype=pas
+}
+P 2800 1700 2500 1700 1 0 0
+{
+T 2450 1700 9 10 1 1 0 7 1
+pinlabel=CNV
+T 2600 1750 5 8 0 1 0 0 1
+pinnumber=14
+T 2600 1750 5 8 0 1 0 0 1
+pinseq=14
+T 2400 1750 9 10 0 1 0 6 1
+pintype=in
+}
+P 700 3000 700 2700 1 0 0
+{
+T 700 2650 9 10 1 1 0 5 1
+pinlabel=+5F
+T 750 2750 5 8 0 1 0 0 1
+pinnumber=15
+T 750 2750 5 8 0 1 0 0 1
+pinseq=15
+T 600 450 9 10 0 1 0 6 1
+pintype=pas
+}
+T 700 3700 8 10 0 1 0 0 1
+spice-prototype=X? %down SlowShaper

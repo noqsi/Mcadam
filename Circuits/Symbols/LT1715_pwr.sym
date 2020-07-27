@@ -1,0 +1,63 @@
+v 20200319 2
+T 90 2900 5 8 0 0 0 0 1
+device=Dual_comparator
+T 100 2500 5 8 0 0 0 0 1
+author=jpd
+T 100 2100 5 8 0 0 0 0 1
+dist-license=GPL , see http://www.gnu.org/licenses/gpl.txt
+T 100 1900 5 8 0 0 0 0 1
+use-license=free, no restrictions
+T 700 900 8 10 1 1 0 1 1
+refdes=U?
+B 0 100 800 700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 100 450 9 8 1 0 0 1 1
+2x
+P 200 900 200 800 1 0 0
+{
+T 150 850 5 8 0 1 0 6 1
+pinseq=6
+T 150 850 5 8 1 1 0 6 1
+pinnumber=10
+T 200 1050 5 8 0 1 0 7 1
+pintype=pwr
+T 200 700 5 8 1 1 0 4 1
+pinlabel=Vcc
+}
+P 200 0 200 100 1 0 0
+{
+T 150 0 5 8 0 1 0 7 1
+pinseq=4
+T 100 0 5 8 1 1 0 4 1
+pinnumber=5
+T 500 0 5 8 0 1 0 6 1
+pintype=pwr
+T 200 200 5 8 1 1 0 4 1
+pinlabel=Vee
+}
+L 275 350 375 350 3 0 0 0 -1 -1
+L 375 350 375 550 3 0 0 0 -1 -1
+L 375 550 475 550 3 0 0 0 -1 -1
+T 2100 900 8 10 0 0 0 0 1
+spec=N/A
+P 600 0 600 100 1 0 0
+{
+T 550 0 5 8 0 1 0 7 1
+pinseq=5
+T 500 0 5 8 1 1 0 4 1
+pinnumber=6
+T 900 0 5 8 0 1 0 6 1
+pintype=pwr
+T 600 200 5 8 1 1 0 4 1
+pinlabel=GND
+}
+P 600 900 600 800 1 0 0
+{
+T 550 850 5 8 0 1 0 6 1
+pinseq=7
+T 550 850 5 8 1 1 0 6 1
+pinnumber=9
+T 600 1050 5 8 0 1 0 7 1
+pintype=pwr
+T 600 700 5 8 1 1 0 4 1
+pinlabel=+Vs
+}
