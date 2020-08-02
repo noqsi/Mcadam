@@ -372,7 +372,7 @@ C 46200 43400 1 0 0 gnd-1.sym
 N 43900 43700 41600 43700 4
 {
 T 43400 43800 5 10 1 1 0 0 1
-netname=+3.3A
+netname=+5
 }
 C 48200 40900 1 0 0 opamp_dual_pwr.sym
 {
@@ -404,7 +404,7 @@ C 49600 41700 1 0 0 gnd-1.sym
 N 46500 42000 45900 42000 4
 {
 T 46000 42100 5 10 1 1 0 0 1
-netname=+3.3A
+netname=+5
 }
 N 44700 49300 44700 48200 4
 {
@@ -435,7 +435,7 @@ title=Pulse Shaper and Detector
 C 41000 43600 1 0 0 in-1.sym
 {
 T 41000 43900 5 10 1 1 0 0 1
-refdes=+3.3A
+refdes=+5
 }
 C 41000 48100 1 0 0 in-1.sym
 {
@@ -470,7 +470,7 @@ N 43900 45700 43600 45700 4
 N 43600 45700 43600 46800 4
 N 42700 45700 42700 43700 4
 T 43300 40200 8 10 1 1 0 0 1
-spice-prolog=.subckt SlowShaper %up
+spice-prolog=.subckt FastShaper %up
 C 49300 45100 1 180 1 capacitor.sym
 {
 T 49500 44400 5 10 0 0 180 6 1

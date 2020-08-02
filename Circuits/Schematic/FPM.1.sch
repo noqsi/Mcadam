@@ -245,3 +245,12 @@ in a pattern matching the SDD pinout.
 
 Mount D1 where it will best reflect the
 SDD heat sink temperature.
+C 40600 48900 1 0 0 FPM.sym
+{
+T 42200 50400 5 10 1 1 0 0 1
+refdes=FPM?
+T 40600 48900 5 10 0 0 0 0 1
+graphical=1
+}
+T 40300 48400 8 10 1 1 0 0 1
+spice-prolog=.subckt FPM %up
