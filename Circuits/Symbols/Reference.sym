@@ -1,0 +1,77 @@
+v 20200319 2
+B 0 300 1600 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 2000 2800 9 10 0 0 0 0 1
+source=Reference.sch
+T 2000 3000 9 10 0 0 0 0 1
+description=Reference Voltage Generator
+T 2000 3200 9 10 0 0 0 0 1
+device=Reference
+T 2000 3400 9 10 0 0 0 0 1
+distlicense=GPL
+T 2000 3600 9 10 0 0 0 0 1
+uselicense=unlimited
+T 2000 3800 9 10 0 0 0 0 1
+author=jpd@noqsi.com
+T 2000 4000 9 10 0 0 0 0 1
+copyright=2020 John P. Doty
+T 1300 1600 9 10 1 1 0 3 1
+refdes=Ref
+T 600 900 9 10 1 1 0 3 1
+Reference
+P 1900 900 1600 900 1 0 0
+{
+T 1550 900 9 10 1 1 0 7 1
+pinlabel=VHS
+T 1700 950 5 8 0 1 0 0 1
+pinnumber=1
+T 1700 950 5 8 0 1 0 0 1
+pinseq=1
+T 1700 950 9 10 0 1 0 0 1
+pintype=pas
+}
+P 800 1800 800 1500 1 0 0
+{
+T 800 1450 9 10 1 1 0 5 1
+pinlabel=+5
+T 850 1550 5 8 0 1 0 0 1
+pinnumber=6
+T 850 1550 5 8 0 1 0 0 1
+pinseq=6
+T 700 -750 9 10 0 1 0 6 1
+pintype=pas
+}
+P 800 0 800 300 1 0 0
+{
+T 800 350 9 10 1 1 0 3 1
+pinlabel=Gnd
+T 850 250 5 8 0 1 0 2 1
+pinnumber=8
+T 850 250 5 8 0 1 0 2 1
+pinseq=8
+T 700 50 9 10 0 1 0 6 1
+pintype=pas
+}
+P 1900 1200 1600 1200 1 0 0
+{
+T 1550 1200 9 10 1 1 0 7 1
+pinlabel=VFS
+T 1700 1250 5 8 0 1 0 0 1
+pinnumber=9
+T 1700 1250 5 8 0 1 0 0 1
+pinseq=9
+T 1500 1250 9 10 0 1 0 6 1
+pintype=pas
+}
+P 1900 600 1600 600 1 0 0
+{
+T 1550 600 9 10 1 1 180 1 1
+pinlabel=+2.5R
+T 1650 650 5 8 0 1 90 2 1
+pinnumber=2
+T 1650 650 5 8 0 1 90 2 1
+pinseq=2
+T 1850 500 9 10 0 1 90 6 1
+pintype=pas
+}
+T 2000 2600 8 10 0 0 0 0 1
+spice-prototype=X? %down Reference

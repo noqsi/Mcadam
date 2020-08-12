@@ -1,0 +1,114 @@
+v 20200319 2
+P 0 1500 300 1500 1 0 0
+{
+T 200 1550 5 8 0 1 0 6 1
+pinnumber=10
+T 200 1450 5 8 0 1 0 8 1
+pinseq=10
+T 350 1500 9 8 1 1 0 0 1
+pinlabel=FLLD
+T 350 1500 5 8 0 1 0 2 1
+pintype=pas
+}
+P 0 1200 300 1200 1 0 0
+{
+T 200 1250 5 8 0 1 0 6 1
+pinnumber=11
+T 200 1150 5 8 0 1 0 8 1
+pinseq=11
+T 350 1200 9 8 1 1 0 0 1
+pinlabel=HVDAC
+T 350 1200 5 8 0 1 0 2 1
+pintype=pas
+}
+P 0 900 300 900 1 0 0
+{
+T 200 950 5 8 0 1 0 6 1
+pinnumber=12
+T 200 850 5 8 0 1 0 8 1
+pinseq=12
+T 350 900 9 8 1 1 0 0 1
+pinlabel=SLLD
+T 350 900 5 8 0 1 0 2 1
+pintype=pas
+}
+P 0 600 300 600 1 0 0
+{
+T 200 650 5 8 0 1 0 6 1
+pinnumber=13
+T 200 550 5 8 0 1 0 8 1
+pinseq=13
+T 350 600 9 8 1 1 0 0 1
+pinlabel=TDAC
+T 350 600 5 8 0 1 0 2 1
+pintype=pas
+}
+P 2000 1500 1700 1500 1 0 0
+{
+T 1800 1550 5 8 0 1 0 0 1
+pinnumber=22
+T 1800 1450 5 8 0 1 0 2 1
+pinseq=22
+T 1650 1500 9 8 1 1 0 6 1
+pinlabel=TEMP
+T 1650 1500 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2000 1200 1700 1200 1 0 0
+{
+T 1800 1250 5 8 0 1 0 0 1
+pinnumber=23
+T 1800 1150 5 8 0 1 0 2 1
+pinseq=23
+T 1650 1200 9 8 1 1 0 6 1
+pinlabel=HOT
+T 1650 1200 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2000 900 1700 900 1 0 0
+{
+T 1800 950 5 8 0 1 0 0 1
+pinnumber=24
+T 1800 850 5 8 0 1 0 2 1
+pinseq=24
+T 1650 900 9 8 1 1 0 6 1
+pinlabel=HVHK
+T 1650 900 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2000 600 1700 600 1 0 0
+{
+T 1800 650 5 8 0 1 0 0 1
+pinnumber=25
+T 1800 550 5 8 0 1 0 2 1
+pinseq=25
+T 1650 600 9 8 1 1 0 6 1
+pinlabel=TIS
+T 1650 600 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2000 300 1700 300 1 0 0
+{
+T 1800 350 5 8 0 1 0 0 1
+pinnumber=26
+T 1800 250 5 8 0 1 0 2 1
+pinseq=26
+T 1650 300 9 8 1 1 0 6 1
+pinlabel=TVS
+T 1650 300 5 8 0 1 0 8 1
+pintype=pas
+}
+B 300 0 1400 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 100 9 10 1 0 0 0 2
+PerFPM-
+analog
+T 800 2300 5 10 0 0 0 0 1
+device=PerFPM
+T 800 2500 5 10 0 0 0 0 1
+author=jpd
+T 800 2700 5 10 0 0 0 0 1
+source=PerFPM.sch
+T 800 2900 5 10 0 0 0 0 1
+spice-prototype=X? %down PerFPM
+T 1800 1800 8 10 1 1 0 0 1
+refdes=F?

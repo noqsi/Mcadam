@@ -1,1 +1,2 @@
 (component-library "../Symbols")
+( source-library "." )

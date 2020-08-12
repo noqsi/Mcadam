@@ -122,7 +122,7 @@ T 43800 44300 5 10 0 0 0 0 1
 spec=N/A
 }
 N 43800 49100 44100 49100 4
-N 43800 48700 44100 48700 4
+N 43800 48700 47100 48700 4
 N 43800 48300 44100 48300 4
 C 44100 41200 1 0 0 capacitor.sym
 {
@@ -156,9 +156,9 @@ N 43800 45500 44100 45500 4
 T 44200 45400 5 10 1 1 0 0 1
 netname=+2F
 }
-N 43800 45100 44100 45100 4
+N 43800 45100 45900 45100 4
 {
-T 44200 45000 5 10 1 1 0 0 1
+T 46000 45100 5 10 1 1 0 0 1
 netname=+3.3F
 }
 C 44600 42200 1 0 0 resistor5.sym
@@ -178,7 +178,7 @@ value=75k
 N 45500 42300 46100 42300 4
 N 45900 41400 45900 42300 4
 N 47000 42300 47200 42300 4
-N 43800 47100 44700 47100 4
+N 43800 47100 44200 47100 4
 C 45000 41200 1 0 0 capacitor.sym
 {
 T 45200 41700 5 10 1 1 0 0 1
@@ -196,40 +196,25 @@ T 50500 40200 9 10 1 0 0 0 1
 1
 T 52000 40200 9 10 1 0 0 0 1
 2
-C 46600 47600 1 0 1 diode.sym
+C 46900 47600 1 0 1 diode.sym
 {
-T 45900 47900 5 10 1 1 0 6 1
+T 46200 47900 5 10 1 1 0 6 1
 refdes=D1
 }
-C 47200 47700 1 0 1 in-1.sym
-{
-T 47200 48000 5 10 1 1 0 6 1
-refdes=HOT
-}
-C 51900 46400 1 0 0 out-1.sym
-{
-T 51900 46700 5 10 1 1 0 0 1
-refdes=Out
-}
-C 45600 47500 1 0 0 gnd-1.sym
+C 45900 47500 1 0 0 gnd-1.sym
 C 44700 48200 1 0 1 in-1.sym
 {
 T 45300 48300 5 10 1 1 0 6 1
 refdes=+TEC
-}
-C 44700 48600 1 0 1 in-1.sym
-{
-T 45300 48700 5 10 1 1 0 6 1
-refdes=TEMP
 }
 C 44700 49000 1 0 1 in-1.sym
 {
 T 45300 49100 5 10 1 1 0 6 1
 refdes=-TEC
 }
-C 45300 47000 1 0 1 in-1.sym
+C 44800 47000 1 0 1 in-1.sym
 {
-T 45900 47100 5 10 1 1 0 6 1
+T 45400 47100 5 10 1 1 0 6 1
 refdes=DUMP
 }
 C 47800 42200 1 0 1 in-1.sym
@@ -237,14 +222,14 @@ C 47800 42200 1 0 1 in-1.sym
 T 48400 42300 5 10 1 1 0 6 1
 refdes=-HV
 }
-T 45700 49200 9 10 1 0 0 0 7
+T 40200 40300 9 10 1 0 0 0 7
 J1 is the SDD socket, composed of
 Mill-Max 1401-0-15-80-30-27-10-0
 receptacles soldered to the board
 in a pattern matching the SDD pinout.
 
-Mount D1 where it will best reflect the
-SDD heat sink temperature.
+Mount D1 where its temperature will 
+best represent theSDD heat sink temperature.
 C 40600 48900 1 0 0 FPM.sym
 {
 T 42200 50400 5 10 1 1 0 0 1
@@ -254,3 +239,26 @@ graphical=1
 }
 T 40300 48400 8 10 1 1 0 0 1
 spice-prolog=.subckt FPM %up
+C 47100 48600 1 0 0 out-1.sym
+{
+T 47100 48900 5 10 1 1 0 0 1
+refdes=TEMP
+}
+C 47100 47700 1 0 0 out-1.sym
+{
+T 47100 48000 5 10 1 1 0 0 1
+refdes=HOT
+}
+N 47100 47800 46900 47800 4
+C 52800 46400 1 0 0 out-1.sym
+{
+T 52800 46700 5 10 1 1 0 0 1
+refdes=Out
+}
+C 51900 46400 1 0 0 resistor.sym
+{
+T 52100 46700 5 10 1 1 0 0 1
+refdes=R?
+T 52100 46200 5 10 1 1 0 0 1
+value=46.4
+}
