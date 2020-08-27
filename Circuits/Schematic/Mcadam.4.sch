@@ -65,7 +65,7 @@ C 54000 45300 1 180 0 busripper-1.sym
 C 47800 46800 1 0 0 smallbypass.sym
 {
 T 48000 47300 5 10 1 1 0 0 1
-refdes=C?
+refdes=C22
 T 47800 47700 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 46800 5 10 1 1 0 0 1
@@ -74,7 +74,7 @@ value=0.01uF
 C 47800 46100 1 0 0 smallbypass.sym
 {
 T 48000 46600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C23
 T 47800 47000 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 46100 5 10 1 1 0 0 1
@@ -83,7 +83,7 @@ value=0.01uF
 C 47800 45400 1 0 0 smallbypass.sym
 {
 T 48000 45900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C24
 T 47800 46300 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 45400 5 10 1 1 0 0 1
@@ -92,7 +92,7 @@ value=0.01uF
 C 47800 44700 1 0 0 smallbypass.sym
 {
 T 48000 45200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C25
 T 47800 45600 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 44700 5 10 1 1 0 0 1
@@ -101,7 +101,7 @@ value=0.01uF
 C 47800 44000 1 0 0 smallbypass.sym
 {
 T 48000 44500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C26
 T 47800 44900 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 44000 5 10 1 1 0 0 1
@@ -110,7 +110,7 @@ value=0.01uF
 C 47800 43300 1 0 0 smallbypass.sym
 {
 T 48000 43800 5 10 1 1 0 0 1
-refdes=C?
+refdes=C27
 T 47800 44200 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 43300 5 10 1 1 0 0 1
@@ -119,7 +119,7 @@ value=0.01uF
 C 47800 42600 1 0 0 smallbypass.sym
 {
 T 48000 43100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C28
 T 47800 43500 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 42600 5 10 1 1 0 0 1
@@ -128,7 +128,7 @@ value=0.01uF
 C 47800 41900 1 0 0 smallbypass.sym
 {
 T 48000 42400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C29
 T 47800 42800 5 10 0 0 0 0 1
 symversion=20200823
 T 48400 41900 5 10 1 1 0 0 1
@@ -137,7 +137,7 @@ value=0.01uF
 C 47800 41200 1 0 0 bypass.sym
 {
 T 48000 41600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C30
 T 47800 42100 5 10 0 0 0 0 1
 symversion=20090121
 T 48400 41500 5 10 1 1 0 0 1
@@ -146,7 +146,7 @@ value=1uF
 C 47800 40500 1 0 0 bypass.sym
 {
 T 48000 41000 5 10 1 1 0 0 1
-refdes=C?
+refdes=C31
 T 47800 41400 5 10 0 0 0 0 1
 symversion=20090121
 T 48400 40800 5 10 1 1 0 0 1
@@ -157,7 +157,7 @@ C 46400 46800 1 0 0 smallbypass.sym
 T 46400 47700 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 47300 5 10 1 1 0 0 1
-refdes=C?
+refdes=C32
 T 47000 46800 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -166,7 +166,7 @@ C 46400 46100 1 0 0 smallbypass.sym
 T 46400 47000 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 46600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C33
 T 47000 46100 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -175,7 +175,7 @@ C 46400 45400 1 0 0 smallbypass.sym
 T 46400 46300 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 45900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C34
 T 47000 45400 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -184,7 +184,7 @@ C 46400 44700 1 0 0 smallbypass.sym
 T 46400 45600 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 45200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C35
 T 47000 44700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -193,7 +193,7 @@ C 46400 44000 1 0 0 smallbypass.sym
 T 46400 44900 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 44500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C36
 T 47000 44000 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -202,7 +202,7 @@ C 46400 43300 1 0 0 smallbypass.sym
 T 46400 44200 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 43800 5 10 1 1 0 0 1
-refdes=C?
+refdes=C37
 T 47000 43300 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -211,7 +211,7 @@ C 46400 42600 1 0 0 smallbypass.sym
 T 46400 43500 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 43100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C38
 T 47000 42600 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -220,7 +220,7 @@ C 46400 41900 1 0 0 smallbypass.sym
 T 46400 42800 5 10 0 0 0 0 1
 symversion=20200823
 T 46600 42400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C39
 T 47000 41900 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -229,7 +229,7 @@ C 46400 41200 1 0 0 bypass.sym
 T 46400 42100 5 10 0 0 0 0 1
 symversion=20090121
 T 46600 41600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C40
 T 47000 41500 5 10 1 1 0 0 1
 value=1uF
 }
@@ -238,7 +238,7 @@ C 46400 40500 1 0 0 bypass.sym
 T 46400 41400 5 10 0 0 0 0 1
 symversion=20090121
 T 46600 41000 5 10 1 1 0 0 1
-refdes=C?
+refdes=C41
 T 47000 40800 5 10 1 1 0 0 1
 value=1uF
 }
@@ -271,7 +271,7 @@ C 42200 49600 1 0 0 smallbypass.sym
 T 42200 50500 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 50100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C42
 T 42800 49600 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -280,7 +280,7 @@ C 42200 48900 1 0 0 smallbypass.sym
 T 42200 49800 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 49400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C43
 T 42800 48900 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -289,7 +289,7 @@ C 42200 48200 1 0 0 smallbypass.sym
 T 42200 49100 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 48700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C44
 T 42800 48200 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -298,7 +298,7 @@ C 42200 47500 1 0 0 smallbypass.sym
 T 42200 48400 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 48000 5 10 1 1 0 0 1
-refdes=C?
+refdes=C45
 T 42800 47500 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -307,7 +307,7 @@ C 42200 46800 1 0 0 smallbypass.sym
 T 42200 47700 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 47300 5 10 1 1 0 0 1
-refdes=C?
+refdes=C46
 T 42800 46800 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -316,7 +316,7 @@ C 42200 46100 1 0 0 smallbypass.sym
 T 42200 47000 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 46600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C47
 T 42800 46100 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -325,7 +325,7 @@ C 42200 45400 1 0 0 smallbypass.sym
 T 42200 46300 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 45900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C48
 T 42800 45400 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -334,7 +334,7 @@ C 42200 44700 1 0 0 smallbypass.sym
 T 42200 45600 5 10 0 0 0 0 1
 symversion=20200823
 T 42400 45200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C49
 T 42800 44700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -343,7 +343,7 @@ C 42200 44000 1 0 0 bypass.sym
 T 42200 44900 5 10 0 0 0 0 1
 symversion=20090121
 T 42400 44500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C50
 T 42800 44300 5 10 1 1 0 0 1
 value=1uF
 }
@@ -352,7 +352,7 @@ C 42200 43300 1 0 0 bypass.sym
 T 42200 44200 5 10 0 0 0 0 1
 symversion=20090121
 T 42400 43800 5 10 1 1 0 0 1
-refdes=C?
+refdes=C51
 T 42800 43600 5 10 1 1 0 0 1
 value=1uF
 }
@@ -361,7 +361,7 @@ C 40800 49600 1 0 0 smallbypass.sym
 T 40800 50500 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 50100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C52
 T 41400 49600 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -370,7 +370,7 @@ C 40800 48900 1 0 0 smallbypass.sym
 T 40800 49800 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 49400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C53
 T 41400 48900 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -379,7 +379,7 @@ C 40800 48200 1 0 0 smallbypass.sym
 T 40800 49100 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 48700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C54
 T 41400 48200 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -388,7 +388,7 @@ C 40800 47500 1 0 0 smallbypass.sym
 T 40800 48400 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 48000 5 10 1 1 0 0 1
-refdes=C?
+refdes=C55
 T 41400 47500 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -397,7 +397,7 @@ C 40800 46800 1 0 0 smallbypass.sym
 T 40800 47700 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 47300 5 10 1 1 0 0 1
-refdes=C?
+refdes=C56
 T 41400 46800 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -406,7 +406,7 @@ C 40800 46100 1 0 0 smallbypass.sym
 T 40800 47000 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 46600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C57
 T 41400 46100 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -415,7 +415,7 @@ C 40800 45400 1 0 0 smallbypass.sym
 T 40800 46300 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 45900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C58
 T 41400 45400 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -424,7 +424,7 @@ C 40800 44700 1 0 0 smallbypass.sym
 T 40800 45600 5 10 0 0 0 0 1
 symversion=20200823
 T 41000 45200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C59
 T 41400 44700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -433,7 +433,7 @@ C 40800 44000 1 0 0 bypass.sym
 T 40800 44900 5 10 0 0 0 0 1
 symversion=20090121
 T 41000 44500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C60
 T 41400 44300 5 10 1 1 0 0 1
 value=1uF
 }
@@ -442,7 +442,7 @@ C 40800 43300 1 0 0 bypass.sym
 T 40800 44200 5 10 0 0 0 0 1
 symversion=20090121
 T 41000 43800 5 10 1 1 0 0 1
-refdes=C?
+refdes=C61
 T 41400 43600 5 10 1 1 0 0 1
 value=1uF
 }
@@ -476,14 +476,14 @@ C 51000 46200 1 0 0 smdosc.sym
 T 51900 47200 5 10 1 1 0 0 1
 device=OSC
 T 51900 47400 5 10 1 1 0 0 1
-refdes=U16
+refdes=U8
 }
 C 51400 45900 1 0 0 gnd-1.sym
 N 51500 47400 51000 47400 4
 C 50100 46700 1 0 0 resistor.sym
 {
 T 50300 47000 5 10 1 1 0 0 1
-refdes=R31
+refdes=R28
 T 50500 46500 5 10 1 1 0 0 1
 value=18
 }
@@ -506,7 +506,7 @@ C 49600 46800 1 0 0 2.5VF.sym
 C 49800 47400 1 0 0 smallbypass.sym
 {
 T 50000 47900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C62
 T 49800 48300 5 10 0 0 0 0 1
 symversion=20200823
 T 50400 47400 5 10 1 1 0 0 1
@@ -521,7 +521,7 @@ C 43600 44700 1 0 0 smallbypass.sym
 T 43600 45600 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 45200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C63
 T 44200 44700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -530,7 +530,7 @@ C 43600 44000 1 0 0 smallbypass.sym
 T 43600 44900 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 44500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C64
 T 44200 44000 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -539,7 +539,7 @@ C 43600 43300 1 0 0 smallbypass.sym
 T 43600 44200 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 43800 5 10 1 1 0 0 1
-refdes=C?
+refdes=C65
 T 44200 43300 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -548,7 +548,7 @@ C 43600 42600 1 0 0 smallbypass.sym
 T 43600 43500 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 43100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C66
 T 44200 42600 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -562,7 +562,7 @@ C 43600 48200 1 0 0 smallbypass.sym
 T 43600 49100 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 48700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C67
 T 44200 48200 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -571,7 +571,7 @@ C 43600 47500 1 0 0 smallbypass.sym
 T 43600 48400 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 48000 5 10 1 1 0 0 1
-refdes=C?
+refdes=C68
 T 44200 47500 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -580,7 +580,7 @@ C 43600 46800 1 0 0 smallbypass.sym
 T 43600 47700 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 47300 5 10 1 1 0 0 1
-refdes=C?
+refdes=C69
 T 44200 46800 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -589,7 +589,7 @@ C 43600 46100 1 0 0 smallbypass.sym
 T 43600 47000 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 46600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C70
 T 44200 46100 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -603,7 +603,7 @@ C 43600 41900 1 0 0 smallbypass.sym
 T 43600 42800 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 42400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C71
 T 44200 41900 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -612,7 +612,7 @@ C 43600 48900 1 0 0 smallbypass.sym
 T 43600 49800 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 49400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C72
 T 44200 48900 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -621,7 +621,7 @@ C 43600 49600 1 0 0 smallbypass.sym
 T 43600 50500 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 50100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C73
 T 44200 49600 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -630,7 +630,7 @@ C 43600 45400 1 0 0 smallbypass.sym
 T 43600 46300 5 10 0 0 0 0 1
 symversion=20200823
 T 43800 45900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C74
 T 44200 45400 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -642,7 +642,7 @@ C 51800 43700 1 0 0 smallbypass.sym
 T 51800 44600 5 10 0 0 0 0 1
 symversion=20200823
 T 52000 44200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C75
 T 52400 43700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -651,7 +651,7 @@ C 51800 43000 1 0 0 smallbypass.sym
 T 51800 43900 5 10 0 0 0 0 1
 symversion=20200823
 T 52000 43500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C76
 T 52400 43000 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -660,7 +660,7 @@ C 51800 42300 1 0 0 bypass.sym
 T 51800 43200 5 10 0 0 0 0 1
 symversion=20090121
 T 52000 42700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C77
 T 52400 42600 5 10 1 1 0 0 1
 value=1uF
 }
@@ -669,7 +669,7 @@ C 50400 43700 1 0 0 smallbypass.sym
 T 50400 44600 5 10 0 0 0 0 1
 symversion=20200823
 T 50600 44200 5 10 1 1 0 0 1
-refdes=C?
+refdes=C78
 T 51000 43700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -678,7 +678,7 @@ C 50400 43000 1 0 0 smallbypass.sym
 T 50400 43900 5 10 0 0 0 0 1
 symversion=20200823
 T 50600 43500 5 10 1 1 0 0 1
-refdes=C?
+refdes=C79
 T 51000 43000 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -687,7 +687,7 @@ C 50400 42300 1 0 0 bypass.sym
 T 50400 43200 5 10 0 0 0 0 1
 symversion=20090121
 T 50600 42700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C80
 T 51000 42600 5 10 1 1 0 0 1
 value=1uF
 }
@@ -709,6 +709,6 @@ C 54900 43400 1 0 0 FPGA.sym
 T 55200 43700 5 10 1 1 0 0 1
 device=FPGA
 T 55300 44200 5 10 1 1 0 0 1
-refdes=U?
+refdes=U1
 }
 U 53800 44000 54900 44000 10 0

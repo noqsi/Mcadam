@@ -15,7 +15,7 @@ title=TITLE
 C 54100 47400 1 0 0 PerFPM-pwr.sym
 {
 T 56500 48700 5 10 1 1 0 6 1
-refdes=F0
+refdes=F1
 }
 C 49000 47200 1 0 0 HV.sym
 {
@@ -43,7 +43,7 @@ C 44200 49500 1 0 0 HashChoke.sym
 T 44400 50100 5 10 0 0 0 0 1
 symversion=0.1
 T 44400 49700 5 10 1 1 0 0 1
-refdes=L6
+refdes=L1
 T 44900 49700 5 10 1 1 0 0 1
 value=1uH
 }
@@ -52,7 +52,7 @@ C 43200 49400 1 0 0 EMI-chip.sym
 T 43400 50700 5 10 0 1 0 0 1
 symversion=20090122
 T 43400 49700 5 10 1 1 0 0 1
-refdes=L5
+refdes=L2
 }
 N 43700 49500 44200 49500 4
 C 44100 48600 1 90 0 capacitor.sym
@@ -64,7 +64,7 @@ spec=16WVDC X7R
 T 43000 48600 5 10 0 0 90 0 1
 footprint=0805
 T 44200 49400 5 10 1 1 180 0 1
-refdes=C5
+refdes=C9
 T 44400 48900 5 10 1 1 180 0 1
 value=1uF
 }
@@ -77,7 +77,7 @@ spec=10WVDC
 T 45300 49500 5 10 0 0 0 0 1
 footprint=0805
 T 45100 49200 5 10 1 1 0 0 1
-refdes=C6
+refdes=C10
 T 45000 48700 5 10 1 1 0 0 1
 value=10uF
 }
@@ -90,7 +90,7 @@ C 44200 47700 1 0 0 HashChoke.sym
 T 44400 48300 5 10 0 0 0 0 1
 symversion=0.1
 T 44400 47900 5 10 1 1 0 0 1
-refdes=L2
+refdes=L3
 T 44900 47900 5 10 1 1 0 0 1
 value=1uH
 }
@@ -103,7 +103,7 @@ spec=16WVDC X7R
 T 43000 46800 5 10 0 0 90 0 1
 footprint=0805
 T 44200 47600 5 10 1 1 180 0 1
-refdes=C1
+refdes=C11
 T 44400 47100 5 10 1 1 180 0 1
 value=1uF
 }
@@ -112,7 +112,7 @@ C 43200 47600 1 0 0 EMI-chip.sym
 T 43400 48900 5 10 0 1 0 0 1
 symversion=20090122
 T 43400 47900 5 10 1 1 0 0 1
-refdes=L1
+refdes=L4
 }
 N 43700 47700 44200 47700 4
 C 45300 47700 1 270 0 capacitor-2.sym
@@ -124,7 +124,7 @@ spec=10WVDC
 T 45300 47700 5 10 0 0 0 0 1
 footprint=0805
 T 45100 47400 5 10 1 1 0 0 1
-refdes=C2
+refdes=C12
 T 45000 46900 5 10 1 1 0 0 1
 value=10uF
 }
@@ -137,7 +137,7 @@ C 44300 45600 1 0 0 HashChoke.sym
 T 44500 46200 5 10 0 0 0 0 1
 symversion=0.1
 T 44500 45800 5 10 1 1 0 0 1
-refdes=L4
+refdes=L5
 T 45000 45800 5 10 1 1 0 0 1
 value=1uH
 }
@@ -146,7 +146,7 @@ C 43300 45500 1 0 0 EMI-chip.sym
 T 43500 46800 5 10 0 1 0 0 1
 symversion=20090122
 T 43500 45800 5 10 1 1 0 0 1
-refdes=L3
+refdes=L6
 }
 N 43800 45600 44300 45600 4
 C 44200 44700 1 90 0 capacitor.sym
@@ -158,7 +158,7 @@ spec=16WVDC X7R
 T 43100 44700 5 10 0 0 90 0 1
 footprint=0805
 T 44300 45500 5 10 1 1 180 0 1
-refdes=C3
+refdes=C13
 T 44500 45000 5 10 1 1 180 0 1
 value=1uF
 }
@@ -171,7 +171,7 @@ spec=10WVDC
 T 45800 44700 5 10 0 0 180 0 1
 footprint=0805
 T 46000 45000 5 10 1 1 180 0 1
-refdes=C4
+refdes=C14
 T 46100 45500 5 10 1 1 180 0 1
 value=10uF
 }
@@ -233,21 +233,21 @@ C 41900 42400 1 0 0 gp_opamp_dual.sym
 T 42200 45100 5 8 0 0 0 0 1
 symversion=1.0nicer
 T 41900 42400 5 10 0 0 0 0 1
-slot=2
+slot=1
 T 42600 43100 5 10 1 1 0 0 1
-refdes=U2
+refdes=U7
 }
 C 40800 42900 1 0 0 resistor.sym
 {
 T 41000 43200 5 10 1 1 0 0 1
-refdes=R11
+refdes=R18
 T 41400 43100 5 10 1 1 0 0 1
 value=18.2k
 }
 C 42000 41100 1 0 0 resistor.sym
 {
 T 42200 41400 5 10 1 1 0 0 1
-refdes=R12
+refdes=R19
 T 42300 40900 5 10 1 1 0 0 1
 value=18.2k
 }
@@ -260,7 +260,7 @@ footprint=0603
 T 42100 41700 5 10 0 0 0 0 1
 spec=16WVDC X7R
 T 42300 42200 5 10 1 1 0 0 1
-refdes=C4
+refdes=C15
 T 42700 41700 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -274,13 +274,13 @@ value=MMBT2222A
 T 43400 42300 5 10 0 0 0 0 1
 model-name=MMBT2222A
 T 44000 42800 5 10 1 1 0 0 1
-refdes=Q3
+refdes=Q1
 }
 N 43000 42800 43400 42800 4
 C 43900 42200 1 0 0 resistor.sym
 {
 T 44100 42500 5 10 1 1 0 0 1
-refdes=R13
+refdes=R20
 T 44200 42000 5 10 1 1 0 0 1
 value=1
 }
@@ -298,7 +298,7 @@ symversion=20090121
 T 43900 43400 5 10 0 0 0 0 1
 spec=16WVDC X7R
 T 44100 43900 5 10 1 1 0 0 1
-refdes=C11
+refdes=C16
 T 44500 43700 5 10 1 1 0 0 1
 value=0.1uF
 }
@@ -310,7 +310,7 @@ spec=5% 1W
 T 43800 44400 5 10 0 0 0 0 1
 footprint=2512
 T 43100 43800 5 10 1 1 0 0 1
-refdes=R14
+refdes=R21
 T 43200 43300 5 10 1 1 0 0 1
 value=4.99
 }
@@ -319,7 +319,7 @@ C 51100 42000 1 0 0 gp_opamp_dual_pwr.sym
 T 51300 44000 5 8 0 0 0 0 1
 symversion=1.0
 T 51750 42550 5 10 1 1 0 0 1
-refdes=U2
+refdes=U7
 }
 C 50500 43300 1 0 0 resistor.sym
 {
@@ -335,7 +335,7 @@ symversion=20090121
 T 51400 43200 5 10 0 0 0 0 1
 spec=16WVDC X7R
 T 51600 43700 5 10 1 1 0 0 1
-refdes=C8
+refdes=C17
 T 52000 43500 5 10 1 1 0 0 1
 value=0.1uF
 }
@@ -353,19 +353,19 @@ symversion=1.0nicer
 T 46800 42900 5 10 0 0 0 0 1
 slot=2
 T 47500 43600 5 10 1 1 0 0 1
-refdes=U2
+refdes=U7
 }
 C 45700 43400 1 0 0 resistor.sym
 {
 T 45900 43700 5 10 1 1 0 0 1
-refdes=R11
+refdes=R23
 T 46300 43600 5 10 1 1 0 0 1
 value=30.1k
 }
 C 46900 41600 1 0 0 resistor.sym
 {
 T 47100 41900 5 10 1 1 0 0 1
-refdes=R12
+refdes=R24
 T 47200 41400 5 10 1 1 0 0 1
 value=18.2k
 }
@@ -378,7 +378,7 @@ footprint=0603
 T 47000 42200 5 10 0 0 0 0 1
 spec=16WVDC X7R
 T 47200 42700 5 10 1 1 0 0 1
-refdes=C4
+refdes=C18
 T 47600 42200 5 10 1 1 0 0 1
 value=0.01uF
 }
@@ -393,13 +393,13 @@ value=MMBT2222A
 T 48300 42800 5 10 0 0 0 0 1
 model-name=MMBT2222A
 T 48900 43300 5 10 1 1 0 0 1
-refdes=Q3
+refdes=Q2
 }
 N 47900 43300 48300 43300 4
 C 48800 42700 1 0 0 resistor.sym
 {
 T 49000 43000 5 10 1 1 0 0 1
-refdes=R13
+refdes=R25
 T 49100 42500 5 10 1 1 0 0 1
 value=1
 }
@@ -417,7 +417,7 @@ symversion=20090121
 T 48800 43900 5 10 0 0 0 0 1
 spec=16WVDC X7R
 T 49000 44400 5 10 1 1 0 0 1
-refdes=C11
+refdes=C19
 T 49400 44200 5 10 1 1 0 0 1
 value=0.1uF
 }
@@ -429,7 +429,7 @@ spec=5% 1W
 T 48700 44900 5 10 0 0 0 0 1
 footprint=2512
 T 48000 44300 5 10 1 1 0 0 1
-refdes=R14
+refdes=R26
 T 48100 43800 5 10 1 1 0 0 1
 value=4.99
 }
@@ -446,7 +446,7 @@ footprint=2711
 T 43500 40500 5 10 0 0 0 0 1
 spec=15WVDC
 T 43500 40500 5 10 1 1 0 0 1
-refdes=C48
+refdes=C20
 T 44100 40500 5 10 1 1 0 0 1
 value=47uF
 }
@@ -462,7 +462,7 @@ footprint=2711
 T 48000 40700 5 10 0 0 0 0 1
 spec=15WVDC
 T 48000 40700 5 10 1 1 0 0 1
-refdes=C48
+refdes=C21
 T 48600 40700 5 10 1 1 0 0 1
 value=47uF
 }
@@ -472,7 +472,7 @@ N 48000 40900 48000 41700 4
 C 46600 42800 1 0 1 resistor.sym
 {
 T 46400 43100 5 10 1 1 0 6 1
-refdes=R11
+refdes=R27
 T 46000 43000 5 10 1 1 0 6 1
 value=45.3k
 }
@@ -484,5 +484,5 @@ C 47800 49400 1 0 0 FPGA.sym
 T 48100 49700 5 10 1 1 0 0 1
 device=FPGA
 T 48200 50200 5 10 1 1 0 0 1
-refdes=U?
+refdes=U1
 }
