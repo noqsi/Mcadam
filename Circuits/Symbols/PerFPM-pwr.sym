@@ -50,7 +50,7 @@ pinnumber=6
 T 1250 200 5 8 0 1 0 8 1
 pinseq=6
 T 1300 350 9 8 1 1 0 3 1
-pinlabel=HV
+pinlabel=-HV
 T 1300 500 5 8 0 1 0 3 1
 pintype=pwr
 }

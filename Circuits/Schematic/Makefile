@@ -24,7 +24,10 @@ EXPORTS= Mcadam.bom.txt $(PDF)
 %.psch : %.tsv
 	awk -f ../Scripts/pins2gsch.awk $^ >$@
 
-all : $(PDF)
+all : $(PDF) Mcadam.bom.txt
+
+Mcadam.bom.txt : $(ALLSRC)
+	lepton-netlist -g bom $(SCH) -o $@
 
 clean : 
-	rm -rf *.ps *.pdf *.bom.txt *.net.txt \#* *~ *.psch *.log exports
+	rm -rf *.ps *.pdf *.bom.txt *.net.txt \#* *~ *.psch *.log *.osm *.net exports

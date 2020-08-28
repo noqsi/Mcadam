@@ -20,7 +20,7 @@ refdes=F1
 C 49000 47200 1 0 0 HV.sym
 {
 T 50800 48800 5 10 1 1 0 3 1
-refdes=HV
+refdes=HVG
 }
 C 47200 45200 1 0 0 Reference.sym
 {

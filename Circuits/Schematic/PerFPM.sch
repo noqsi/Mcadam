@@ -31,7 +31,7 @@ refdes=TR
 C 45800 48300 1 0 1 HVregulator.sym
 {
 T 44000 49900 5 10 1 1 0 3 1
-refdes=HV
+refdes=HVR
 }
 C 44500 48000 1 0 0 gnd-1.sym
 C 47000 44200 1 0 1 gnd-1.sym
@@ -148,7 +148,7 @@ refdes=HVDAC
 C 46400 49300 1 0 1 in-1.sym
 {
 T 46400 49600 5 10 1 1 0 6 1
-refdes=HV
+refdes=-HV
 }
 C 48800 46200 1 0 1 in-1.sym
 {
