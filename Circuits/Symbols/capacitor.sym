@@ -31,3 +31,5 @@ T 100 1300 8 10 0 1 0 0 1
 description=Ceramic capacitor
 T 0 1400 8 10 0 1 0 0 1
 spec=25WVDC C0G
+T 300 400 8 10 0 1 0 0 1
+symversion=20090121
