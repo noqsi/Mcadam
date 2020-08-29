@@ -106,8 +106,6 @@ T 800 2300 5 10 0 0 0 0 1
 device=PerFPM
 T 800 2500 5 10 0 0 0 0 1
 author=jpd
-T 800 2700 5 10 0 0 0 0 1
-source=PerFPM.sch
 T 800 2900 5 10 0 0 0 0 1
 spice-prototype=X? %down PerFPM
 T 1800 1800 8 10 1 1 0 0 1

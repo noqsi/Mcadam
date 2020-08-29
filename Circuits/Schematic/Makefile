@@ -6,11 +6,13 @@ SUBSCH= FPM.1.sch FPM.2.sch FastShaper.1.sch FastShaper.2.sch HV.sch HVregulator
 PSCHS= ProASICpins.tsv
 PSCH= ProASICpins.psch
 
+TOP=$(SCH) $(PSCH)
+
 PDF= FPM.1.pdf FPM.2.pdf FastShaper.1.pdf FastShaper.2.pdf HV.pdf HVregulator.pdf \
 	Mcadam.1.pdf Mcadam.2.pdf Mcadam.3.pdf Mcadam.4.pdf PerFPM.pdf Reference.pdf \
 	SlowShaper.1.pdf SlowShaper.2.pdf TECregulator.pdf
 
-ALLSRC= Makefile gafrc attribs $(SCH) $(SCH) $(PSCHS)
+ALLSRC= Makefile gafrc attribs $(SCH) $(SUBSCH) $(PSCHS)
  
 EXPORTS= Mcadam.bom.txt $(PDF)
 
@@ -24,7 +26,16 @@ EXPORTS= Mcadam.bom.txt $(PDF)
 %.psch : %.tsv
 	awk -f ../Scripts/pins2gsch.awk $^ >$@
 
-all : $(PDF) Mcadam.bom.txt
+.PHONY : all check
+
+all : check $(PDF) Mcadam.osm Mcadam.bom.txt
+
+check : $(ALLSRC) $(PSCH)
+	lepton-netlist -L../Scripts -g check-pincount $(TOP)
+	lepton-netlist -L../Scripts -g check-duplicates $(TOP)
+
+Mcadam.osm : $(ALLSRC) $(PSCH)
+	lepton-netlist -g osmond $(TOP) -o $@
 
 Mcadam.bom.txt : $(ALLSRC)
 	lepton-netlist -g bom $(SCH) -o $@

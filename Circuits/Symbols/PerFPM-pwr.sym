@@ -74,8 +74,6 @@ T 900 1700 5 10 0 0 0 0 1
 device=PerFPM
 T 900 1900 5 10 0 0 0 0 1
 author=jpd
-T 900 2100 5 10 0 0 0 0 1
-source=PerFPM.sch
 T 900 2300 5 10 0 0 0 0 1
 spice-prototype=X? %down PerFPM
 P 0 900 300 900 1 0 0
