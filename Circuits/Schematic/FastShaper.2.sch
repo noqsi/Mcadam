@@ -17,7 +17,7 @@ graphical=1
 T 50000 40400 5 10 1 1 0 0 1
 date=20200725
 T 53900 40400 5 10 1 1 0 0 1
-rev=Mcadam0.5
+rev=Mcadam1.0
 T 55600 40100 5 10 1 1 0 0 1
 auth=jpd@noqsi.com
 C 53600 41800 1 0 0 FastShaper.sym
