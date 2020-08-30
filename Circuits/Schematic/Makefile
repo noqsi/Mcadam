@@ -28,7 +28,7 @@ EXPORTS= Mcadam.bom.txt $(PDF)
 
 .PHONY : all check
 
-all : check $(PDF) Mcadam.osm Mcadam.bom.txt
+all : check $(PDF) Mcadam.osm Mcadam.bom.txt Mcadam.bom2.txt
 
 check : $(ALLSRC) $(PSCH)
 	lepton-netlist -L../Scripts -g check-pincount $(TOP)
@@ -40,5 +40,8 @@ Mcadam.osm : $(ALLSRC) $(PSCH)
 Mcadam.bom.txt : $(ALLSRC)
 	lepton-netlist -g bom $(SCH) -o $@
 
+Mcadam.bom2.txt : $(ALLSRC)
+	lepton-netlist -g bom2 $(SCH) -o $@
+
 clean : 
-	rm -rf *.ps *.pdf *.bom.txt *.net.txt \#* *~ *.psch *.log *.osm *.net exports
+	rm -rf *.ps *.pdf *.bom.txt *.bom2.txt *.net.txt \#* *~ *.psch *.log *.osm *.net exports

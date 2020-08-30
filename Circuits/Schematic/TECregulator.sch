@@ -12,14 +12,14 @@ fname=TECregulator.sch
 T 53200 41200 5 14 1 1 0 4 1
 title=TEC Regulator
 }
-C 44900 47300 1 180 1 gp_opamp_dual.sym
+C 44900 47300 1 180 1 opamp_dual.sym
 {
 T 45600 46600 5 10 1 1 180 6 1
 refdes=U1
 T 45200 44600 5 8 0 0 180 6 1
 symversion=1.0nicer
 }
-C 49500 43900 1 0 0 gp_opamp_dual.sym
+C 49500 43900 1 0 0 opamp_dual.sym
 {
 T 50200 44600 5 10 1 1 0 0 1
 refdes=U1
@@ -28,7 +28,7 @@ symversion=1.0nicer
 T 49500 43900 5 10 0 0 0 0 1
 slot=2
 }
-C 43100 42000 1 0 0 gp_opamp_dual_pwr.sym
+C 43100 42000 1 0 0 opamp_dual_pwr.sym
 {
 T 43300 44000 5 8 0 0 0 0 1
 symversion=1.0

@@ -34,7 +34,7 @@ refdes=D?
 T 200 1000 5 10 0 0 0 0 1
 value=1N914UR
 T 200 1200 5 10 0 0 0 0 1
-footprint=do213aa
+footprint=DO213AA
 T 200 1400 5 10 0 0 0 0 1
 model-name=FDLL914B
 T 200 1600 5 10 0 0 0 0 1

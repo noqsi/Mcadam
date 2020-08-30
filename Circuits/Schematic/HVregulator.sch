@@ -53,14 +53,12 @@ T 48200 47900 5 10 0 0 0 0 1
 model-name=QPMBTA92
 }
 C 48300 47100 1 0 1 gnd-1.sym
-C 46700 48800 1 180 1 gp_opamp_dual.sym
+C 46700 48800 1 180 1 opamp_dual.sym
 {
 T 47200 48100 5 10 1 1 180 6 1
 refdes=U1
 T 47000 46100 5 8 0 0 180 6 1
 symversion=1.0
-T 47400 48000 5 10 0 0 180 6 1
-value=LT2078
 }
 C 47800 48300 1 0 0 resistor5.sym
 {
@@ -98,14 +96,12 @@ refdes=R4
 T 46800 42200 5 10 1 1 0 0 1
 value=10k
 }
-C 55300 41800 1 0 0 gp_opamp_dual_pwr.sym
+C 55300 41800 1 0 0 opamp_dual_pwr.sym
 {
 T 55500 43800 5 8 0 0 0 0 1
 symversion=1.0
 T 55950 42350 5 10 1 1 0 0 1
 refdes=U1
-T 56300 42700 5 10 0 0 0 0 1
-value=LT2078
 }
 C 55700 41500 1 0 1 gnd-1.sym
 C 54700 43000 1 0 0 resistor5.sym
@@ -129,7 +125,7 @@ footprint=0603
 C 56400 42800 1 0 0 gnd-1.sym
 N 54700 43100 54100 43100 4
 N 55600 42700 55600 43100 4
-C 43800 47800 1 0 0 gp_opamp_dual.sym
+C 43800 47800 1 0 0 opamp_dual.sym
 {
 T 44300 48500 5 10 1 1 0 0 1
 refdes=U1
@@ -137,8 +133,6 @@ T 44100 50500 5 8 0 0 0 0 1
 symversion=1.0
 T 43800 47800 5 10 0 0 0 0 1
 slot=2
-T 44500 48600 5 10 0 0 0 0 1
-value=LT2078
 }
 N 44900 47100 44900 48200 4
 N 43900 45700 43900 48000 4
