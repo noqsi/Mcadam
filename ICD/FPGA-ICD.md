@@ -1,131 +1,71 @@
 # Mcadam FPGA ICD
-Draft of June 24, 2019
+Draft of September 14, 2020
 
 John P. Doty, Noqsi Aerospace Ltd
-## Interface Signals and Voltages
-Signals are digital, 3.3V CMOS, positive logic.
+##  Signals and Voltages
 
-**AE** is analog electronics.
+### Digital Interface Signals to Analog Electronics (AE)
 
-### Per-detector signals (two of each)
+#### Per-detector signals (two of each)
 
-* **FASTTRIG**, **SLOWTRIG** (AE->FPGA) A pulse has risen above threshold.
-* **FASTZX**, **SLOWZX** (AE->FPGA) After the corresponding **TRIG** has been asserted, a rising edge of **ZX** occurs at the moment that the filtered pulse amplitude peaks. This is when the ADC acquisition cycle should start.
-* **OVERSHOOT** (AE->FPGA) Diagnoses analog overload.
+These are all 3.3V CMOS. Positive logic except **SYNC/**.
+
+* **FTRIG** (AE->FPGA) A pulse has risen above the fast threshold.
+* **FZX** (AE->FPGA) After **FTRIG** has been asserted, a rising edge of **FZX** occurs at the moment that the filtered pulse amplitude peaks. This is when the ADC acquisition cycle should start. **FZX** will usually be in an indeterminate state, but will go low at or before the time that **FTRIG** is asserted. The rising edge of **FZX** will occur at or after the trailing edge of **FTRIG**.
+* **FCNV** (FPGA->AE) Initiates A/D conversion. The rise of this should asynchronously follow the rise of **FZX** following assertion of **FTRIG**. The fall of **FCNV** initiates ADC readout, and should be synchronized with **SCK**. The **FCNV** pulse should be at least 500ns wide.
+* **FSDO** (AE->FPGA) ADC data bits. See Figure 28 of the AD7984 data sheet for acquisition timing.
+
+**STRIG**, **SZX**, **SCNV**, and **SSDO** are functionally the same as the above signals, but serve the slow chain.
+
+* **SCK** (FPGA->AE) ADC clock.
+* **OVER** (AE->FPGA) Diagnoses analog overload.
 * **FULL** (AE->FPGA) This indicates that the charge integrator in the detector is (nearly) full. The FPGA state machine should issue a **DUMP** pulse. Recording such events is useful for measuring total detector current, radiation plus dark leakage.
 * **DUMP** (FPGA->AE) Dump the charge from the SDD's charge integrator. 5 µs, 3.3V pulse.
-* **FASTCNV**, **SLOWCNV** (FPGA->AE) ADC convert command.
-* **FASTSDO**, **SLOWSDO** (AE->FPGA) ADC serial data.
-* **SYNC/** (FPGA->AE) DAC enable.
 
-### Signals common to both detectors
-* **SCK** (FPGA->AE) ADC clock.
-* **SCLK** (FPGA->AE) DAC clock.
-* **DIN** (FPGA->AE) DAC serial data.
-* **DOUT** (AE->FPGA) HK ADC data.
-* **HK0** (FPGA->AE) Housekeeping address bit 0.
-* **HK1** (FPGA->AE) Housekeeping address bit 1.
-* **HK2** (FPGA->AE) Housekeeping address bit 2.
-* **HKSEL0/** (FPGA->AE) Housekeeping mux select.
-* **HKSEL1/** (FPGA->AE) Housekeeping mux select.
-* **HKSEL2/** (FPGA->AE) Housekeeping mux select.
-* **HKCS/** (FPGA->AE) Housekeeping ADC enable.
+#### Housekeeping
 
-## State Machine for Pulse Acquisition
-Here, **Event** refers to the logical OR of **FASTTRIG**, **SLOWTRIG**, and **OVERSHOOT**.
+#### Operating Parameter Control
 
-There one such state machine per SDD.
+#### Master clock
 
-![](State.png)
-### State: *Idle*
-* Entered from *Record*. This is also the initial state.
-* Exit: *Capture*, driven by **Event**.
-* Exit: *Wait*, driven by **Full**.
+#### PPS and Spacewire
 
-This is the usual resting state between incoming photons and charge dump events.
-### State: *Capture*
-* Entered from *Triggered*.
-* Exit: *Settle*.
+## Event Logic and Timing
 
-This is the main data aquisition state, where a number of activities take place in parallel. More details below.
+Event acquisition potentially involves three separate but related activities for an event from a given detector.
 
-The dead time counter is active in the *Capture* state.
+1. Acquisition of a pulse height from the fast chain.
+2. Acquisition of a pulse height from the slow chain.
+3. Detector charge dump.
 
-The *Capture* state captures the time in `event_time`. More details below.
+### Pulse Height Acquisition
+![](AcqTiming.png)
 
-### State: *Settle*
-* Entered from *Capture*, *Dump*, and *Retrigger*
-* Exit: *Retrigger*, driven by **Event**.
-* Exit: *Dump*, driven by **FULL**.
-* Exit: *Record*, after 10 (TBR) µs.
+Defining *tp* as the peaking time of the chain, 60 ns for the fast chain, 2 µs for the slow chain (TBR), we have the following relationships.
 
-The purpose of this state is to wait for the shaping filter to settle down after a photon detection or charge dump event.
+The trigger delay *td*, and the zero-crossing delay *zd* should obey:
 
-The dead time counter is active in the *Settle* state.
+0 < *td* < *tp*
 
-### State: *Record*
-* Entered from the *Settle* state.
-* Exit: *Idle*
+0 < *zd* < *tp*
 
-This records the event data. Once recorded, clears the event data.
+The zero-crossing signal **ZX** is valid for a time *zl* ≈ *tp* before its low to high transition, and *zh* ≈ *tp* after. Outside this interval, it is unpredictable.
 
-### State: *Retrigger*
-* Entered from *Settle*
-* Exit: *Dump*, driven by **FULL**.
-* Exit: *Settle*, driven by **Event** low.
+The conversion delay *cd* should be minimized. Its estimated value for the FPGA implementation affects the fine tuning of fast shaper time constants.
 
-This handles the case where the shaping filter doesn't settle on schedule, either because it's recovering from an overload or an interval between photons too short for it.
+This timing comes from analog functions driven by photon arrival time, so it is all asynchronous. Once conversion is initiated by a low to high, the acquisition of ADC data may proceed synchronously in accordance with the ADC7984 specification.
 
-The dead time counter is active in the *Retrigger* state.
+### Charge Dump
 
-### State: *Wait*
-* Entered from *Idle*
-* Exit: *Triggered*, driven by **Event**.
-* Exit: *Dump*, after 3 (TBR) µs.
+![](DumpTiming.png)
 
-Sometimes, the charge accumulated in the detector charge integrator exceeds the DUMP threshold because a photon, rather than dark current, pushes it over. In this case, **Event** will be asserted shortly after **FULL**. This state waits for such a trigger, allowing the pulse height capture process to proceed before dumping the charge in this case.
-### State: *Dump*
-* Entered from *Wait*, *Settle*, and *Retrigger*.
-* Exit: *Settle*, after 5 (TBR) µs.
+The detector accumulates charge from dark current, optical loading, particle background, and x-rays. The **FULL** flag indicates accumulation nearing the limit of the detector's capacity to store it. If an x-ray pushes the charge above threshold, it is desirable to acquire that x-ray pulse height before dumping the charge. The **DUMP** pulse should be delayed by an amount *tdd* to allow the acquisition, where:
 
-This should assert **DUMP** for the duration of this state.
+*tdd* > *tp(slow)*
 
-The *Dump* state sets `dump` in the event code.
+to insure that the slow channel has the opportunity to trigger. If an x-ray trigger occurs, the delay should be extended to avoid interfering with acquisition.
 
-The dead time counter is active in the *Dump* state.
+### Races and Dead Time
 
-If the *Dump* state is entered from *Wait*, it captures the time in `event_time`. Otherwise, `event_time` should already have been set by *Capture*.
 
-## The Capture State
-The *Capture* state involves three processes that occur in parallel:
-
-1. Watch for **FASTTRIG** asserted. If it is, the following rising edge of **FASTZX** should immediately trigger a rising edge of **FASTCNV**. Once the conversion is complete, the fast ADC data should be read out and saved.
-2.  Watch for **SLOWTRIG** asserted. If it is, the following rising edge of **SLOWZX** should immediately trigger a rising edge of **SLOWCNV**. Once the conversion is complete, the slow ADC data should be read out and saved.
-3. Watch for **OVERSHOOT** asserted. If it is, set the `overshoot` flag in the event code.
-
-`event_time` should be set to the time of the assertion of **FASTCNV**, **SLOWCNV**, or **OVERSHOOT**, whichever comes first.
-
-Exit the **Capture** state once **Event** is deasserted and any acquisition triggered by **FASTTRIG** and **SLOWTRIG** is complete.
-
-## Raw Event Encoding
-This section delves a short distance beyond the interface into what the FPGA captures. This does not represent the final encoding into events in packets. The number of bits and time resolution are TBD, with NICER's implementation as reference here.
-
-* `event_time`
-* `dead_time`
-
-For NICER, these are 16 bit values, with ~40 ns resolution in hardware. `event_time` is common to both detectors and counts continuously, with overflows handled in software. In addition to recording the `event_time` for each SDD event, the FPGA should record the `event_time` for each GPS PPS pulse.
-
-`dead_time` is per detector, held at zero in the *Idle* and *Wait* states, actively counting in the other states.
-
-* `fast_trigger`
-* `slow_trigger`
-* `overshoot`
-* `dump`
-
-These are one bit flags characterizing the event.
-
-* `fast_ph`
-* `slow_ph`
-
-For NICER, these are 16 bit quantities. While the ADC is capable of 18 bit resolution, we only use 16 bits of it.
 
