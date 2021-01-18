@@ -1,5 +1,5 @@
 # Mcadam FPGA ICD
-Draft of September 14, 2020
+Draft of September 28, 2020
 
 John P. Doty, Noqsi Aerospace Ltd
 ##  Signals and Voltages
@@ -66,6 +66,53 @@ The detector accumulates charge from dark current, optical loading, particle bac
 to insure that the slow channel has the opportunity to trigger. If an x-ray trigger occurs, the delay should be extended to avoid interfering with acquisition.
 
 ### Races and Dead Time
+An event potentially consists of three sub-events:
 
+1. A pulse from the fast channel.
+2. A pulse from the slow channel.
+3. A detector charge dump.
 
+Data acqusition depends on which signal initiates it, **FTRIG**, **STRIG**, or **FULL**.
 
+#### Fast-triggered Events
+
+If **FTRIG** is the first of the signals asserted, unconditionally acquire a pulse height from the fast channel. If **STRIG** occurs within 1.5×*tp(slow)* (3ns, TBR), aquire a pulse height from the slow channel, too. Otherwise, do not acquire a pulse height from the slow channel. Dead time starts when **FTRIG** is asserted.
+
+#### Slow-triggered Events
+
+If **STRIG** is the first of the signals asserted, unconditionally acquire a pulse height from the slow channel. Do not acqure a pulse height from the fast channel. Dead time starts when **STRIG** is asserted.
+
+#### Full-triggered Events
+
+If **Full** is the first of the signals asserted, wait 1.5×*tp(slow)*. If during this time, either **FTRIG** or **STRIG** is asserted, treat the event as fast-triggered or slow-triggered as appropriate. Otherwise, collect neither a fast nor slow pulse height, and proceed with a dump cycle. In that case, dead time starts when **DUMP** is asserted.
+
+#### Dump cycle
+
+Once either **SCNV** is asserted, or it has been determined that no **SCNV** will be asserted for this event, a dump cycle is allowed. If **FULL** is asserted, assert **DUMP** for 5µs (TBR). Dead time continues during this interval.
+
+#### Forced Trigger Cycle
+
+Periodically (5/second, TBR) acquire a reference pulse height from both channels. This should occur when no event acquisition is in progress for the detector. Dead time starts when **FCNV** and **SCNV** are asserted.
+
+#### End of Acquisition
+
+Event acquisition ends when:
+
+1. **FCNV**, **SCNV**, and **DUMP** are not asserted, and
+2. **FTRIG** and **STRIG** have been deaserted for 2×*tp(slow)* (4µs, TBR).
+
+Dead time ends at this point.
+
+## Data Encoding
+
+Use the NICER MPU Photon Data Structure, with one exception: replace the "Undershoot" flag with a "Dunp" flag, indicating that **DUMP** was issued during the event processing. 
+### Pulse Height
+The AD7984 ADC is an 18 bit, two's complement device, but pulse heights in telemetry are unsigned 12 bit quantities. The conversion is handled in 16 bit arithmetic as follows:
+
+1. Acquire 16 bits from the ADC. Ignore the two least significant bits.
+2. Complement the most significant bit, to obtain unsigned coding.
+3. Subtract a 16 bit fixed offset.
+4. Shift left 0-4 bits with limiting: if any of the lost bits is 1, yield 0xffff.
+5. Drop the last 4 bits, for a 12 bit result.
+
+The offset and shift parameters for each ADC are commandable.
