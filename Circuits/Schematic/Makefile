@@ -1,4 +1,4 @@
-SCH= Mcadam.1.sch	Mcadam.2.sch	Mcadam.3.sch	Mcadam.4.sch
+SCH= MPU.1.sch	MPU.2.sch	MPU.3.sch	MPU.4.sch
 
 FPM=FPM.1.sch FPM.2.sch
 
@@ -11,12 +11,12 @@ PSCH= ProASICpins.psch
 TOP=$(SCH) $(PSCH)
 
 PDF= FPM.1.pdf FPM.2.pdf FastShaper.1.pdf FastShaper.2.pdf HV.pdf HVregulator.pdf \
-	Mcadam.1.pdf Mcadam.2.pdf Mcadam.3.pdf Mcadam.4.pdf PerFPM.pdf Reference.pdf \
+	MPU.1.pdf MPU.2.pdf MPU.3.pdf MPU.4.pdf PerFPM.pdf Reference.pdf \
 	SlowShaper.1.pdf SlowShaper.2.pdf TECregulator.pdf
 
 ALLSRC= Makefile gafrc attribs $(SCH) $(SUBSCH) $(PSCHS) $(FPM)
  
-EXPORTS= FPM.bom.txt Mcadam.bom.txt $(PDF)
+EXPORTS= FPM.bom.txt MPU.bom.txt $(PDF)
 
 # And definitions to assemble the documentation
 
@@ -30,7 +30,7 @@ EXPORTS= FPM.bom.txt Mcadam.bom.txt $(PDF)
 
 .PHONY : all check
 
-all : check $(PDF) Mcadam.osm Mcadam.bom.txt Mcadam.bom2.txt \
+all : check $(PDF) MPU.osm MPU.bom.txt MPU.bom2.txt \
 	FPM.bom.txt FPM.bom2.txt FPM.osm
 
 check : $(ALLSRC) $(PSCH)
@@ -39,13 +39,13 @@ check : $(ALLSRC) $(PSCH)
 	lepton-netlist -L../Scripts -g check-pincount $(TOP)
 	lepton-netlist -L../Scripts -g check-duplicates $(TOP)
 
-Mcadam.osm : $(ALLSRC) $(PSCH)
+MPU.osm : $(ALLSRC) $(PSCH)
 	lepton-netlist -g osmond $(TOP) -o $@
 
-Mcadam.bom.txt : $(ALLSRC)
+MPU.bom.txt : $(ALLSRC)
 	lepton-netlist -g bom $(SCH) -o $@
 
-Mcadam.bom2.txt : $(ALLSRC)
+MPU.bom2.txt : $(ALLSRC)
 	lepton-netlist -g bom2 $(SCH) -o $@
 
 FPM.osm : $(ALLSRC) $(PSCH)
