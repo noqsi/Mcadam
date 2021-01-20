@@ -2,7 +2,7 @@ v 20200604 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 50000 40500 5 10 1 1 0 0 1
-date=20210118
+date=20210120
 T 53900 40500 5 10 1 1 0 0 1
 rev=Mcadam1.1
 T 55400 40200 5 10 1 1 0 0 1
@@ -487,3 +487,9 @@ T 52000 40200 9 10 1 0 0 0 1
 4
 T 40700 40600 9 20 1 0 0 0 1
 X-ray Signal Flow
+T 41800 48100 9 10 1 0 0 0 2
+100 ohm LVDS balanced pair
+R9 near FPGA
+T 52300 42700 9 10 1 0 0 0 2
+100 ohm LVDS balanced pairs
+Resistors near FPGA
