@@ -1,4 +1,4 @@
-v 20200604 2
+v 20200319 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 50000 40500 5 10 1 1 0 0 1
@@ -220,7 +220,7 @@ footprint=2512
 T 43100 43800 5 10 1 1 0 0 1
 refdes=R21
 T 43200 43300 5 10 1 1 0 0 1
-value=4.99
+value=5.1
 }
 C 51100 42000 1 0 0 opamp_dual_pwr.sym
 {
@@ -304,7 +304,7 @@ footprint=2512
 T 48000 44300 5 10 1 1 0 0 1
 refdes=R26
 T 48100 43800 5 10 1 1 0 0 1
-value=4.99
+value=5.1
 }
 C 47200 44100 1 0 0 3.3V-plus-1.sym
 C 40500 43000 1 0 0 2.5V-plus-1.sym
@@ -315,9 +315,9 @@ C 43500 40500 1 0 0 polarcap.sym
 T 43700 41400 5 10 0 0 0 0 1
 symversion=0.1
 T 43500 40500 5 10 0 0 0 0 1
-footprint=2711
+footprint=2312
 T 43500 40500 5 10 0 0 0 0 1
-spec=15WVDC
+spec=16WVDC
 T 43500 40500 5 10 1 1 0 0 1
 refdes=C20
 T 44100 40500 5 10 1 1 0 0 1
@@ -331,9 +331,9 @@ C 48000 40700 1 0 0 polarcap.sym
 T 48200 41600 5 10 0 0 0 0 1
 symversion=0.1
 T 48000 40700 5 10 0 0 0 0 1
-footprint=2711
+footprint=2312
 T 48000 40700 5 10 0 0 0 0 1
-spec=15WVDC
+spec=16WVDC
 T 48000 40700 5 10 1 1 0 0 1
 refdes=C21
 T 48600 40700 5 10 1 1 0 0 1

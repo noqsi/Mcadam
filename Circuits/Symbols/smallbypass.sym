@@ -32,6 +32,6 @@ footprint=0603
 T 100 1300 8 10 0 1 0 0 1
 description=Ceramic capacitor
 T 0 1400 8 10 0 1 0 0 1
-spec=10WVDC,X7R
+spec=10WVDC X7R
 T 600 0 8 10 1 1 0 0 1
 value=0.01uF

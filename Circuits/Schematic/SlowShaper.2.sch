@@ -1,4 +1,4 @@
-v 20200604 2
+v 20200319 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 53200 41200 5 14 1 1 0 4 1
@@ -85,20 +85,20 @@ T 53600 45200 9 10 1 0 0 0 3
 Bypass capacitor placement
 around U9 is critical. See the
 AD7984 data sheet.
-C 48200 46800 1 0 0 opamp_dual.sym
+C 48100 46800 1 0 0 opamp_dual.sym
 {
-T 48700 47500 5 10 1 1 0 0 1
+T 48600 47500 5 10 1 1 0 0 1
 refdes=U3
-T 48500 49500 5 8 0 0 0 0 1
+T 48400 49500 5 8 0 0 0 0 1
 symversion=1.0
 }
-C 48300 44400 1 180 1 opamp_dual.sym
+C 48200 44400 1 180 1 opamp_dual.sym
 {
-T 48800 43700 5 10 1 1 180 6 1
+T 48700 43700 5 10 1 1 180 6 1
 refdes=U3
-T 48600 41700 5 8 0 0 180 6 1
+T 48500 41700 5 8 0 0 180 6 1
 symversion=1.0
-T 48300 44400 5 10 0 0 0 0 1
+T 48200 44400 5 10 0 0 0 0 1
 slot=2
 }
 C 48300 44500 1 0 0 resistor.sym
@@ -219,7 +219,7 @@ C 45500 49600 1 0 0 resistor.sym
 T 45700 49900 5 10 1 1 0 0 1
 refdes=R32
 T 46000 49400 5 10 1 1 0 0 1
-value=2.0k
+value=2k
 }
 C 46900 48900 1 0 0 LT1715.sym
 {

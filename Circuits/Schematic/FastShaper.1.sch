@@ -1,4 +1,4 @@
-v 20200604 2
+v 20200319 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 C 46300 47100 1 180 1 resistor.sym
 {
@@ -16,7 +16,7 @@ device=RESISTOR
 T 45400 44900 5 10 1 1 180 6 1
 refdes=R2
 T 45700 45400 5 10 1 1 180 6 1
-value=1000
+value=1.0k
 }
 C 45200 46100 1 180 1 capacitor.sym
 {
@@ -91,7 +91,7 @@ device=RESISTOR
 T 44300 47500 5 10 1 1 180 6 1
 refdes=R6
 T 44800 47500 5 10 1 1 180 6 1
-value=1000
+value=1.0k
 }
 N 43400 46800 44100 46800 4
 C 49300 45800 1 180 1 resistor.sym
@@ -153,7 +153,7 @@ device=RESISTOR
 T 52200 46100 5 10 1 1 180 6 1
 refdes=R11
 T 52700 46100 5 10 1 1 180 6 1
-value=1k
+value=1.0k
 }
 N 52200 46300 52200 47800 4
 C 52200 47200 1 180 1 capacitor.sym
@@ -218,7 +218,7 @@ device=RESISTOR
 T 52200 42900 5 10 1 1 180 6 1
 refdes=R15
 T 52700 42900 5 10 1 1 180 6 1
-value=1k
+value=1.0k
 }
 N 52200 43100 52200 44600 4
 C 52200 44000 1 180 1 capacitor.sym
@@ -276,7 +276,7 @@ device=RESISTOR
 T 51300 45300 5 10 1 1 180 6 1
 refdes=R17
 T 51800 45300 5 10 1 1 180 6 1
-value=1k
+value=1.0k
 }
 C 51100 44800 1 180 1 capacitor.sym
 {

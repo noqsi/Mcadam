@@ -5,7 +5,7 @@ device=OSC
 T 900 1200 8 10 1 1 0 0 1
 refdes=U?
 T 1400 1700 8 10 0 0 0 0 1
-footprint=SG210
+footprint=KC2016
 T 1400 1900 8 10 0 0 0 0 1
 description=Surface Mount Oscillator
 T 1400 1500 8 10 0 0 0 0 1
@@ -62,4 +62,4 @@ T 350 550 5 8 1 1 0 0 1
 pinlabel=\_ST
 }
 T 1400 1300 8 10 0 0 0 0 1
-value=SG-210STF 40.0000ML
+value=KC2016K40.0000C1GE00
