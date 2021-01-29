@@ -442,9 +442,9 @@ T 41000 48400 5 10 1 1 0 0 1
 refdes=VB
 }
 T 50100 40400 5 10 1 1 0 0 1
-date=20200725
+date=20210129
 T 53900 40400 5 10 1 1 0 0 1
-rev=Mcadam1.0
+rev=Mcadam1.5
 T 55500 40100 5 10 1 1 0 0 1
 auth=jpd@noqsi.com
 C 41100 40200 1 0 0 SlowShaper.sym
