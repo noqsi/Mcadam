@@ -1,4 +1,4 @@
-v 20200319 2
+v 20200604 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 50000 40500 5 10 1 1 0 0 1
@@ -437,7 +437,7 @@ value=0.01uF
 C 50400 45100 1 0 0 testpt-1.sym
 {
 T 50500 45500 5 10 1 1 0 0 1
-refdes=TP1
+refdes=GND1
 T 50800 45800 5 10 0 0 0 0 1
 footprint=5016
 T 50400 45100 5 10 0 0 0 0 1
@@ -459,7 +459,7 @@ on sides of board
 C 51000 45100 1 0 0 testpt-1.sym
 {
 T 51100 45500 5 10 1 1 0 0 1
-refdes=TP2
+refdes=GND2
 T 51400 45800 5 10 0 0 0 0 1
 footprint=5016
 T 51000 45100 5 10 0 0 0 0 1
@@ -470,7 +470,7 @@ pins=1
 C 51600 45100 1 0 0 testpt-1.sym
 {
 T 51700 45500 5 10 1 1 0 0 1
-refdes=TP3
+refdes=GND3
 T 52000 45800 5 10 0 0 0 0 1
 footprint=5016
 T 51600 45100 5 10 0 0 0 0 1
@@ -481,7 +481,7 @@ pins=1
 C 52200 45100 1 0 0 testpt-1.sym
 {
 T 52300 45500 5 10 1 1 0 0 1
-refdes=TP4
+refdes=GND4
 T 52600 45800 5 10 0 0 0 0 1
 footprint=5016
 T 52200 45100 5 10 0 0 0 0 1
