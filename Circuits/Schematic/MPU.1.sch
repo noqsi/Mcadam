@@ -220,7 +220,7 @@ footprint=MDM9S
 T 56700 44800 5 10 0 0 0 0 1
 pins=9
 T 55700 47700 5 10 0 0 0 6 1
-device=DB9
+device=MDM9
 T 56700 44800 5 10 0 0 0 0 1
 value=MDM-9SCBRM7
 }

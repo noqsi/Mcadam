@@ -30,8 +30,8 @@ EXPORTS= FPM.bom.txt MPU.bom.txt $(PDF)
 
 .PHONY : all check
 
-all : check $(PDF) MPU.osm MPU.bom.txt MPU.bom2.txt \
-	FPM.bom.txt FPM.bom2.txt FPM.osm
+all : check $(PDF) MPU.osm MPU.bom.txt MPU.bom2.txt MPU.screaming.tsv \
+	FPM.bom.txt FPM.bom2.txt FPM.osm FPM.screaming.tsv
 
 check : $(ALLSRC) $(PSCH)
 	lepton-netlist -L../Scripts -g check-pincount $(FPM)
@@ -48,6 +48,9 @@ MPU.bom.txt : $(ALLSRC)
 MPU.bom2.txt : $(ALLSRC)
 	lepton-netlist -g bom2 $(SCH) -o $@
 
+MPU.screaming.tsv : parts.tsv MPU.bom.txt
+	awk -f ../Scripts/ScreamingBOM.awk parts.tsv MPU.bom.txt >MPU.screaming.tsv
+	
 FPM.osm : $(ALLSRC) $(PSCH)
 	lepton-netlist -g osmond $(FPM) -o $@
 
@@ -56,6 +59,10 @@ FPM.bom.txt : $(ALLSRC)
 
 FPM.bom2.txt : $(ALLSRC)
 	lepton-netlist -g bom2 $(FPM) -o $@
+
+FPM.screaming.tsv : parts.tsv FPM.bom.txt
+	awk -f ../Scripts/ScreamingBOM.awk parts.tsv FPM.bom.txt >FPM.screaming.tsv
+	
 
 clean : 
 	rm -rf *.ps *.pdf *.bom.txt *.bom2.txt *.net.txt \#* *~ *.psch *.log *.osm *.net exports
