@@ -10,9 +10,13 @@ PSCH= ProASICpins.psch
 
 TOP=$(SCH) $(PSCH)
 
-PDF= FPM.1.pdf FPM.2.pdf FastShaper.1.pdf FastShaper.2.pdf HV.pdf HVregulator.pdf \
-	MPU.1.pdf MPU.2.pdf MPU.3.pdf MPU.4.pdf PerFPM.pdf Reference.pdf \
-	SlowShaper.1.pdf SlowShaper.2.pdf TECregulator.pdf
+FPMPDF= FPM.1.pdf FPM.2.pdf
+
+MPUPDF= MPU.1.pdf MPU.2.pdf MPU.3.pdf MPU.4.pdf PerFPM.pdf \
+	FastShaper.1.pdf FastShaper.2.pdf SlowShaper.1.pdf \
+	SlowShaper.2.pdf TECregulator.pdf HVregulator.pdf \
+	Reference.pdf HV.pdf
+	
 
 ALLSRC= Makefile gafrc attribs $(SCH) $(SUBSCH) $(PSCHS) $(FPM)
  
@@ -30,8 +34,8 @@ EXPORTS= FPM.bom.txt MPU.bom.txt $(PDF)
 
 .PHONY : all check
 
-all : check $(PDF) MPU.osm MPU.bom.txt MPU.bom2.txt MPU.screaming.tsv \
-	FPM.bom.txt FPM.bom2.txt FPM.osm FPM.screaming.tsv
+all : check MPU.pdf MPU.osm MPU.bom.txt MPU.bom2.txt MPU.screaming.tsv \
+	FPM.pdf FPM.bom.txt FPM.bom2.txt FPM.osm FPM.screaming.tsv
 
 check : $(ALLSRC) $(PSCH)
 	lepton-netlist -L../Scripts -g check-pincount $(FPM)
@@ -50,6 +54,9 @@ MPU.bom2.txt : $(ALLSRC)
 
 MPU.screaming.tsv : parts.tsv MPU.bom.txt
 	awk -f ../Scripts/ScreamingBOM.awk parts.tsv MPU.bom.txt >MPU.screaming.tsv
+
+MPU.pdf : $(MPUPDF)
+	pdftk $(MPUPDF) cat output MPU.pdf
 	
 FPM.osm : $(ALLSRC) $(PSCH)
 	lepton-netlist -g osmond $(FPM) -o $@
@@ -63,6 +70,7 @@ FPM.bom2.txt : $(ALLSRC)
 FPM.screaming.tsv : parts.tsv FPM.bom.txt
 	awk -f ../Scripts/ScreamingBOM.awk parts.tsv FPM.bom.txt >FPM.screaming.tsv
 	
-
+FPM.pdf : $(FPMPDF)
+	pdftk $(FPMPDF) cat output FPM.pdf
 clean : 
 	rm -rf *.ps *.pdf *.bom.txt *.bom2.txt *.net.txt \#* *~ *.psch *.log *.osm *.net exports
