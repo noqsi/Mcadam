@@ -7,7 +7,8 @@
 #include <time.h>
 
 #include "gpio.h"
-#include "hkcal.h"
+
+#define TIME_TIMER	0
 
 void gpio_perror(const char *s, int n);
 
@@ -140,9 +141,9 @@ static void init_force( void ) {
 		
 		pulse[0].gpioOn = 1 << bit;
 		pulse[0].gpioOff = 0;
-		pulse[0].usDelay = 1;		// DUMP is a 1 us pulse
+		pulse[0].usDelay = 1;		// FORCE is a 1 us pulse
 		pulse[1].gpioOn = 0;
-		pulse[1].gpioOff = 1 << DUMP;
+		pulse[1].gpioOff = 1 << bit;
 		pulse[1].usDelay = 0;
 		code = gpioWaveAddGeneric( 2, pulse );
 		if( code < 0 ) {
@@ -172,7 +173,7 @@ static void initialize( void ){
 	zero( TEST_ENABLE );
 	zero( FORCE0 );
 	zero( FORCE1 );
-	input( EVENT_READY );
+	input( EVENT_RDY );
 	
 	adr_reg = spiOpen( ADR, 1000000, ADRFLAGS );
 	if( adr_reg ) {
@@ -216,7 +217,6 @@ static void initialize( void ){
 // }
 
 static void loop( void ){
-	unsigned channel, adcval, i;
 	
 	for(;;){
 		errno = 0;	/* so that EOF is distinguished from error */
