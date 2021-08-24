@@ -100,33 +100,33 @@ static void log_time( void ){
 	unlock_out();
 }
 
-// static int click_id;
-// 
-// static void init_click( uint32_t us, int cycles ) {
-// 	gpioPulse_t pulse[2];
-// 	int code;
-// 	
-// 	pulse[0].gpioOn = 1 << CLICK;
-// 	pulse[0].gpioOff = 0;
-// 	pulse[0].usDelay = us;
-// 	pulse[1].gpioOn = 0;
-// 	pulse[1].gpioOff = 1 << CLICK;
-// 	pulse[1].usDelay = us;
-// 	
-// 	while( cycles-- ) {
-// 		code = gpioWaveAddGeneric( 2, pulse );
-// 		if( code < 0 ) {
-// 			gpio_perror( "lexigse", code );
-// 			exit( 1 );
-// 		}
-// 	}
-// 	click_id = gpioWaveCreate();
-// 	if( click_id < 0 ) {
-// 		gpio_perror( "lexigse", code );
-// 		exit( 1 );
-// 	}
-// }
-// 
+static int click_id;
+
+static void init_click( uint32_t us, int cycles ) {
+	gpioPulse_t pulse[2];
+	int code;
+	
+	pulse[0].gpioOn = 1 << CLICK;
+	pulse[0].gpioOff = 0;
+	pulse[0].usDelay = us;
+	pulse[1].gpioOn = 0;
+	pulse[1].gpioOff = 1 << CLICK;
+	pulse[1].usDelay = us;
+	
+	while( cycles-- ) {
+		code = gpioWaveAddGeneric( 2, pulse );
+		if( code < 0 ) {
+			gpio_perror( "lexigse", code );
+			exit( 1 );
+		}
+	}
+	click_id = gpioWaveCreate();
+	if( click_id < 0 ) {
+		gpio_perror( "lexigse", code );
+		exit( 1 );
+	}
+}
+
 static int force_id[2];
 
 static void init_force( void ) {
@@ -173,33 +173,34 @@ static void initialize( void ){
 	zero( TEST_ENABLE );
 	zero( FORCE0 );
 	zero( FORCE1 );
+	zero( CLICK );
 	input( EVENT_RDY );
-	
+		
 	adr_reg = spiOpen( ADR, 1000000, ADRFLAGS );
-	if( adr_reg ) {
+	if( adr_reg < 0 ) {
 		gpio_perror( "lexigse", adr_reg );
 		exit( 1 );
 	}
 	
 	data_reg = spiOpen( DATA, 1000000, DATAFLAGS );
-	if( data_reg ) {
+	if( data_reg < 0 ) {
 		gpio_perror( "lexigse", data_reg );
 		exit( 1 );
 	}
 	
 	event_reg = spiOpen( EVENT, 1000000, EVENTFLAGS );
-	if( event_reg ) {
+	if( event_reg < 0 ) {
 		gpio_perror( "lexigse", event_reg );
 		exit( 1 );
 	}
-	
+		
 	code = pthread_mutex_init( &m_out, NULL );
 	if( code ) {
 		perror( "lexigse" );
 		exit( 1 );
 	}
 	
-//	init_click( 100, 20 );
+	init_click( 100, 20 );
 	
 	code = gpioSetTimerFunc( TIME_TIMER, 60000, log_time );
 	if( code ) {
@@ -211,10 +212,10 @@ static void initialize( void ){
 }
 
 
-// static void click( void ) {
-// 	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
-// 	if( code < 0 ) gpio_perror( "lexigse", code );
-// }
+static void click( void ) {
+	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
+	if( code < 0 ) gpio_perror( "lexigse", code );
+}
 
 static void loop( void ){
 	
@@ -235,7 +236,7 @@ static void loop( void ){
 		printf( "command\t%s", line );
 		unlock_out();
 		if( strncmp( "click", line, 5 ) == 0 ) {
-//			click();
+			click();
 		} else {
 			fprintf(stderr, 
 				"unrecognized lexigse command: %s\n", line );

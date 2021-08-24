@@ -159,6 +159,6 @@ void gpio_perror(const char *s, int n) {
 	if( n > MAXMSG || n < 0 ) m = "bad gpio error number";
 	else m = msgs[n];
 
-	if( s && *s ) fprintf( stderr, "%s\n", m );
+	if( !(s && *s) ) fprintf( stderr, "%s\n", m );
 	else fprintf( stderr, "%s: %s\n", s, m );
 }

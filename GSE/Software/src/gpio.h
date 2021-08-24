@@ -4,6 +4,7 @@
 #define FORCE1	2
 #define EVENT_RDY	3
 #define TEST_ENABLE	5
+#define CLICK	14
 
 // SPIO CE bits
 
