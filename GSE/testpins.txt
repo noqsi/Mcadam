@@ -1,0 +1,46 @@
+//============================================================================//
+//--- Module Name: test_if
+//
+//--- Description: GSE Test Interface
+//
+// Test connector
+// - pin  1 input  SPI0_MOSI
+// - pin  2 output SPI0_MISO
+// - pin  3 input  SPI0_SCLK
+// - pin  4 input  SPI0_CE0_N
+// - pin  5 input  SPI0_CE1_N
+// - pin  6 input  SPI0_MOSI    - unused
+// - pin  7 output SPI1_MISO
+// - pin  8 input  SPI1_SCLK
+// - pin  9 input  SPI1_CE0_N
+// - pin 10 input  FORCE0       - pulse to force FPM0 event
+// - pin 11 input  FORCE1       - pulse to force FPM1 event
+// - pin 12 output EVENT_RDY    - goes high when event ready; low after SPI1 readout
+// - pin 13 input  TEST_ENABLE  - set high to enable test interface
+//
+// GSE is SPI master, FPGA is slave
+//
+// SPI0 *****************************************
+// - 16-bit transfers
+// - CE0 : MOSI=ADR_REG  MISO=ADR_REG(last)
+// - CE1 : MOSI=WR_REG   MISO=RD_REG
+//
+// ADR_REG
+//  bits 15-8: 8-bit WADR
+//        7-0: 8-bit RADR
+//
+
+DSUB	cable	header	signal
+1	1	19	SPI0_MOSI
+2	3	21	SPI0_MISO
+3	5	23	SPIO_SCLK
+4	7	24	SPI0_CE0_N
+5	9	26	SPI0_CE1_N
+6	11	38	SPI1_MOSI
+7	13	35	SPI1_MISO
+8	15	40	SPI1_SCLK
+9	17	12	SPI1_CE0
+10	19	11	FORCE0	GPIO0
+11	21	13	FORCE1	GPIO2
+12	23	15	EVENT_RDY	GPIO3
+13	25	16	TEST_ENABLE	GPIO5
