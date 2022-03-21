@@ -33,13 +33,26 @@ static void zero( unsigned gpio ){
 	exit( 1 );
 }
 
+
+static int adr_reg, data_reg, event_reg;
+
+// Place the interface in a safe state.
 // Beware that when exit() is called, pigpio may be in an uninitialized
-// state, so cleanup() must reinitialize it in order to use it.
+// state, so cleanup() must initialize it in order to use it.
 // There's no error checking here because there's no safe and sane response.
 
 static void cleanup( void ){
-	gpioInitialise();	// make sure we can turn HV off
+	gpioInitialise();	// make sure we can turn stuff off
+	
 	zero( TEST_ENABLE );	// disable the interface
+	spiClose( adr_reg );
+	spiClose( data_reg);
+	spiClose( event_reg );
+	for( unsigned i = 0, i <= MAX_GPIO, i += 1 ) {
+		gpioSetPullUpDown( i, PI_PUD_DOWN );
+		gpioSetMode( i, PI_INPUT );		
+	}
+	
 	gpioTerminate();
 }
 
@@ -158,7 +171,6 @@ static void init_force( void ) {
 	}
 }
 
-static int adr_reg, data_reg, event_reg;
 
 static void initialize( void ){
 	

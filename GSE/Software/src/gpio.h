@@ -1,3 +1,7 @@
+// Using BANK0
+
+#define MAX_GPIO 27
+
 // GPIO bit numbers
 
 #define FORCE0	17
@@ -14,6 +18,18 @@
 // SPI1 CE bit
 
 #define EVENT	0
+
+// SPI GPIO assignments: force to input on cleanup.
+
+#define SPI0_MOSI	10
+#define SPI0_MISO	9
+#define SPI0_SCLK	11
+#define SPI0_CE0_N	8
+#define SPI0_CE1_N	7
+#define SPI1_MOSI	20
+#define SPI1_MISO	19
+#define SPI1_SCLK	21
+#define	SPI1_CE0_N	18
 
 // spiFlags consists of the least significant 22 bits.
 // 
