@@ -1,9 +1,9 @@
 // GPIO bit numbers
 
-#define FORCE0	0
-#define FORCE1	2
-#define EVENT_RDY	3
-#define TEST_ENABLE	5
+#define FORCE0	17
+#define FORCE1	22
+#define EVENT_RDY	27
+#define TEST_ENABLE	23
 #define CLICK	14
 
 // SPIO CE bits
