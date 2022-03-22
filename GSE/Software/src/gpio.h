@@ -4,11 +4,11 @@
 
 // GPIO bit numbers
 
-#define FORCE0	0
-#define FORCE1	2
-#define EVENT_RDY	3
-#define TEST_ENABLE	26
-#define CLICK	25
+#define FORCE0	17
+#define FORCE1	22
+#define EVENT_RDY	27
+#define TEST_ENABLE	23
+#define CLICK	2
 
 // SPIO CE bits
 
@@ -22,7 +22,7 @@
 // SPI GPIO assignments: force to input on cleanup.
 
 #define SPI0_MOSI	10
-#define SPI0_MISO	7
+#define SPI0_MISO	9
 #define SPI0_SCLK	11
 #define SPI0_CE0_N	8
 #define SPI0_CE1_N	7
