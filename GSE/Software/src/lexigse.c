@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -5,6 +6,8 @@
 #include <pigpio.h>
 #include <pthread.h>
 #include <time.h>
+#include <ctype.h>
+
 
 #include "gpio.h"
 
@@ -48,7 +51,7 @@ static void cleanup( void ){
 	spiClose( adr_reg );
 	spiClose( data_reg);
 	spiClose( event_reg );
-	for( unsigned i = 0, i <= MAX_GPIO, i += 1 ) {
+	for( unsigned i = 0; i <= MAX_GPIO; i += 1 ) {
 		gpioSetPullUpDown( i, PI_PUD_DOWN );
 		gpioSetMode( i, PI_INPUT );		
 	}
@@ -62,24 +65,6 @@ static void timetag( void ){
 	printf( "%f\t", seconds + .0000001*micros );
 }
 
-static pthread_mutex_t m_capture;	// Lock for event capture
-
-
-static void lock_capture( void ) {
-	int code = pthread_mutex_lock( &m_capture );
-	if( code ) {
-		perror( "lexigse" );
-		exit( 1 );
-	}
-}
-
-static void unlock_capture( void ) {
-	int code = pthread_mutex_unlock( &m_capture );
-	if( code ) {
-		perror( "lexigse" );
-		exit( 1 );
-	}
-}
 
 static pthread_mutex_t m_out;		// Lock for output stream
 
@@ -187,6 +172,8 @@ static void initialize( void ){
 	zero( FORCE1 );
 	zero( CLICK );
 	input( EVENT_RDY );
+	
+	init_force();
 		
 	adr_reg = spiOpen( ADR, 1000000, ADRFLAGS );
 	if( adr_reg < 0 ) {
@@ -224,12 +211,63 @@ static void initialize( void ){
 }
 
 
+// Transfer to/from address register. tx, rx, should be two characters apiece.
+
+static void xadr( char *tx, char *rx ) {
+	int code = spiXfer( adr_reg, tx, rx, 2 );
+	if ( code == 2 ) return;
+	
+	gpio_perror( "lexigse", code );
+	exit( 1 );
+}
+
+
+// Transfer to/from data register. tx, rx, should be two characters apiece.
+// 16 bit quantities, big-endian.
+
+static void xdata( char *tx, char *rx ) {
+	int code = spiXfer( adr_reg, tx, rx, 2 );
+	if ( code == 2 ) return;
+	
+	gpio_perror( "lexigse", code );
+	exit( 1 );
+}
+
+
+// Read event structure. ev should be an 8 character buffer.
+// See test_if.txt for coding.s
+
+
+static void read_event( char *ev ) {
+	int code = spiRead( event_reg, ev, 8 );
+	if( code == 8 ) return;
+	
+	gpio_perror( "lexigse", code );
+	exit( 1 );
+}
+	
+
+static void test_enable( int enable ) {
+	int code = gpioWrite( TEST_ENABLE, enable );
+	if( code == 8 ) return;
+	
+	gpio_perror( "lexigse", code );
+	exit( 1 );
+}
+
+
 static void click( void ) {
 	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
-	if( code < 0 ) gpio_perror( "lexigse", code );
+	if( code >= 0 ) return;
+	
+	gpio_perror( "lexigse", code );
+	exit( 1 );
 }
 
 static void loop( void ){
+
+	char txpair[2], rxpair[2];
+	uint16_t datareg;
 	
 	for(;;){
 		errno = 0;	/* so that EOF is distinguished from error */
@@ -243,12 +281,43 @@ static void loop( void ){
                         }
 			return;
 		}
+		
+		/* remove leading white space */
+		
+		char *dbl = line;
+		
+		for( int i = 0; i < ll; i += 1 ) {
+			if( !isspace( *dbl )) break;
+			dbl += 1;
+		}
+
 		lock_out();
 		timetag();
 		printf( "command\t%s", line );
 		unlock_out();
-		if( strncmp( "click", line, 5 ) == 0 ) {
+		if( strncmp( "click", dbl, 5 ) == 0 ) {
 			click();
+		} else if( strncmp( "enable", dbl, 6 ) == 0 ){
+			test_enable( 1 ); 
+		} else if( strncmp( "disable", dbl, 7 ) == 0 ){
+			test_enable( 0 ); 
+		} else if ( 2 == sscanf( dbl, "xadr %hhx %hhx", 
+			txpair, txpair + 1 )){
+			
+			xadr( txpair, rxpair );
+			lock_out();
+			timetag();
+			printf( "last_adr\t%x\t%x\n", rxpair[0], rxpair[1] );
+			unlock_out();
+		} else if ( 1 == sscanf( dbl, "xdata %hu", &datareg )){
+			txpair[0] = datareg>>8;
+			txpair[1] = datareg & 0xff;
+			xdata( txpair, rxpair );
+			lock_out();
+			timetag();
+			printf( "data_reg\t%u\n", rxpair[1] + (rxpair[0]<<8));
+			unlock_out();
+		} else if( !*dbl || *dbl == '#' ) {	/* nothing */
 		} else {
 			fprintf(stderr, 
 				"unrecognized lexigse command: %s\n", line );

@@ -19,7 +19,7 @@
 
 #define EVENT	0
 
-// SPI GPIO assignments: force to input on cleanup.
+// SPI GPIO assignments. Maybe not needed in code, but tabulated here.
 
 #define SPI0_MOSI	10
 #define SPI0_MISO	9
@@ -31,54 +31,13 @@
 #define SPI1_SCLK	21
 #define	SPI1_CE0_N	18
 
-// spiFlags consists of the least significant 22 bits.
-// 
-// 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
-//  b  b  b  b  b  b  R  T  n  n  n  n  W  A u2 u1 u0 p2 p1 p0  m  m
-// 
-// 
-// mm defines the SPI mode.
-// 
-// Warning: modes 1 and 3 do not appear to work on the auxiliary SPI.
-// 
-// Mode POL PHA
-//  0    0   0
-//  1    0   1
-//  2    1   0
-//  3    1   1
-// 
-// 
-// px is 0 if CEx is active low (default) and 1 for active high.
-// 
-// ux is 0 if the CEx GPIO is reserved for SPI (default) and 1 otherwise.
-// 
-// A is 0 for the main SPI, 1 for the auxiliary SPI.
-// 
-// W is 0 if the device is not 3-wire, 1 if the device is 3-wire. Main SPI only.
-// 
-// nnnn defines the number of bytes (0-15) to write before switching the MOSI line to MISO to read data. This field is ignored if W is not set. Main SPI only.
-// 
-// T is 1 if the least significant bit is transmitted on MOSI first, the default (0) shifts the most significant bit out first. Auxiliary SPI only.
-// 
-// R is 1 if the least significant bit is received on MISO first, the default (0) receives the most significant bit first. Auxiliary SPI only.
-// 
-// bbbbbb defines the word size in bits (0-32). The default (0) sets 8 bits per word. Auxiliary SPI only.
-// 
+// Defaults should work for SPI, if not change these according pigpio docs
 
-// ADR and DATA register flags
+#define ADRFLAGS 	0
+#define DATAFLAGS	0
+#define EVENTFLAGS	0
 
-//  b  b  b  b  b  b  R  T  n  n  n  n  W  A u2 u1 u0 p2 p1 p0  m  m
-//  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0
-
-#define ADRFLAGS 	0b10000000
-#define DATAFLAGS	0b10000000
-
-// ADC flags
-
-//  b  b  b  b  b  b  R  T  n  n  n  n  W  A u2 u1 u0 p2 p1 p0  m  m
-//  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  0  0  0  0  0  0
-
-#define EVENTFLAGS	0b111000000
+// Defs for FPGA registers. See test_if.txt
 
 // ADR R/W Description
 // x00 rw   null (no write)
