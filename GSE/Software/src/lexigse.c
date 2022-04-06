@@ -51,6 +51,7 @@ static void cleanup( void ){
 	spiClose( adr_reg );
 	spiClose( data_reg);
 	spiClose( event_reg );
+	gpioWaveClear();
 	for( unsigned i = 0; i <= MAX_GPIO; i += 1 ) {
 		gpioSetPullUpDown( i, PI_PUD_DOWN );
 		gpioSetMode( i, PI_INPUT );		
@@ -167,6 +168,12 @@ static void initialize( void ){
 	
 	atexit( cleanup );
 	
+	code = gpioWaveClear();			// paranoia
+	if( code < 0 ) {
+		gpio_perror( "lexigse", code );
+		exit( 1 );
+	}
+	
 	zero( TEST_ENABLE );
 	zero( FORCE0 );
 	zero( FORCE1 );
@@ -226,7 +233,7 @@ static void xadr( char *tx, char *rx ) {
 // 16 bit quantities, big-endian.
 
 static void xdata( char *tx, char *rx ) {
-	int code = spiXfer( adr_reg, tx, rx, 2 );
+	int code = spiXfer( data_reg, tx, rx, 2 );
 	if ( code == 2 ) return;
 	
 	gpio_perror( "lexigse", code );
@@ -249,7 +256,7 @@ static void read_event( char *ev ) {
 
 static void test_enable( int enable ) {
 	int code = gpioWrite( TEST_ENABLE, enable );
-	if( code == 8 ) return;
+	if( code >=0 ) return;
 	
 	gpio_perror( "lexigse", code );
 	exit( 1 );

@@ -4,7 +4,7 @@
 
 // GPIO bit numbers
 
-#define FORCE0	17
+#define FORCE0	26
 #define FORCE1	22
 #define EVENT_RDY	27
 #define TEST_ENABLE	23
@@ -35,7 +35,7 @@
 
 #define ADRFLAGS 	0
 #define DATAFLAGS	0
-#define EVENTFLAGS	0
+#define EVENTFLAGS	0x100	// Aux SPI
 
 // Defs for FPGA registers. See test_if.txt
 
