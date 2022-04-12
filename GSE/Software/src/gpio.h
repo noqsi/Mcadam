@@ -4,7 +4,7 @@
 
 // GPIO bit numbers
 
-#define FORCE0	26
+#define FORCE0	17
 #define FORCE1	22
 #define EVENT_RDY	27
 #define TEST_ENABLE	23
