@@ -12,6 +12,7 @@
 #include "gpio.h"
 
 #define TIME_TIMER	0
+#define PPS_TIMER	1
 
 void gpio_perror(const char *s, int n);
 
@@ -157,6 +158,15 @@ static void init_force( void ) {
 	}
 }
 
+/* toggle the PPS bit */
+
+static void pps( void ) {
+	int code = gpioWrite( PPS, 1^gpioRead( PPS ));
+	if( code < 0 ) {
+		gpio_perror( "lexigse", code );
+		exit( 1 );
+	}
+}
 
 static void initialize( void ){
 	
@@ -178,6 +188,7 @@ static void initialize( void ){
 	zero( FORCE0 );
 	zero( FORCE1 );
 	zero( CLICK );
+	zero( PPS );
 	input( EVENT_RDY );
 	
 	init_force();
@@ -207,6 +218,12 @@ static void initialize( void ){
 	}
 	
 	init_click( 100, 20 );
+	
+	code = gpioSetTimerFunc( PPS_TIMER, 500, pps );
+	if( code ) {
+		gpio_perror( "lexigse", code );
+		exit( 1 );
+	}
 	
 	code = gpioSetTimerFunc( TIME_TIMER, 60000, log_time );
 	if( code ) {

@@ -9,6 +9,7 @@
 #define EVENT_RDY	27
 #define TEST_ENABLE	23
 #define CLICK	2
+#define PPS	4
 
 // SPIO CE bits
 
