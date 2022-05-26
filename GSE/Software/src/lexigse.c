@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <errno.h>
 #include <string.h>
 #include <pigpio.h>
@@ -259,7 +260,7 @@ static void xdata( char *tx, char *rx ) {
 
 
 // Read event structure. ev should be an 8 character buffer.
-// See test_if.txt for coding.s
+// See test_if.txt for coding.
 
 
 static void read_event( char *ev ) {
@@ -322,7 +323,8 @@ static void loop( void ){
 		if( strncmp( "click", dbl, 5 ) == 0 ) {
 			click();
 		} else if( strncmp( "enable", dbl, 6 ) == 0 ){
-			test_enable( 1 ); 
+			test_enable( 1 );
+			sleep( 2 ); 
 		} else if( strncmp( "disable", dbl, 7 ) == 0 ){
 			test_enable( 0 ); 
 		} else if ( 2 == sscanf( dbl, "xadr %hhx %hhx", 
