@@ -4,11 +4,11 @@ LDLIBS=-lpigpio -lrt
 LDFLAGS=-pthread
 
 
-lexigse: lexigse.o gpio_perror.o
+lexagse: lexagse.o gpio_perror.o
 
-lexigse.o : gpio.h
+lexagse.o : gpio.h
 
 noodle: noodle.o gpio_perror.o
 
 clean:
-	rm -rf *.o lexigse
+	rm -rf *.o lexagse
