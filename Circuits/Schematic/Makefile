@@ -1,18 +1,18 @@
-SCH= MPU.1.sch	MPU.2.sch	MPU.3.sch	MPU.4.sch
+SCH= MPU.1.sch	MPU.2.sch	MPU.3.sch	MPU.4.sch MPU.5.sch
 
 FPM=FPM.1.sch FPM.2.sch
 
 SUBSCH=  FastShaper.1.sch FastShaper.2.sch HV.sch HVregulator.sch \
 	PerFPM.sch Reference.sch SlowShaper.1.sch SlowShaper.2.sch TECregulator.sch
  
-PSCHS= ProASICpins.tsv
-PSCH= ProASICpins.psch
+PSCHS= ProASICpins.tsv Jdb.tsv  Jtp.tsv
+PSCH= ProASICpins.psch Jdb.psch  Jtp.psch
 
 TOP=$(SCH) $(PSCH)
 
 FPMPDF= FPM.1.pdf FPM.2.pdf
 
-MPUPDF= MPU.1.pdf MPU.2.pdf MPU.3.pdf MPU.4.pdf PerFPM.pdf \
+MPUPDF= MPU.1.pdf MPU.2.pdf MPU.3.pdf MPU.4.pdf MPU.5.pdf PerFPM.pdf \
 	FastShaper.1.pdf FastShaper.2.pdf SlowShaper.1.pdf \
 	SlowShaper.2.pdf TECregulator.pdf HVregulator.pdf \
 	Reference.pdf HV.pdf
