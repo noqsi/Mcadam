@@ -2,13 +2,13 @@ v 20210731 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 50000 40500 5 10 1 1 0 0 1
-date=20210301
+date=20220812
 T 53900 40500 5 10 1 1 0 0 1
-rev=Mcadam1.8
+rev=2.0
 T 55400 40200 5 10 1 1 0 0 1
 auth=jpd
 T 53200 41200 5 14 1 1 0 4 1
-title=Mcadam SDD
+title=LEXA MPU
 }
 C 54500 45700 1 0 0 header10-2.sym
 {

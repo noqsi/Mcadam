@@ -2,13 +2,13 @@ v 20210731 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 50000 40500 5 10 1 1 0 0 1
-date=20210129
+date=20220812
 T 53900 40500 5 10 1 1 0 0 1
-rev=Mcadam1.5
+rev=2.0
 T 55400 40200 5 10 1 1 0 0 1
 auth=jpd
 T 53200 41200 5 14 1 1 0 4 1
-title=Mcadam SDD
+title=LEXA MPU
 }
 C 50500 47200 1 0 0 HV.sym
 {
@@ -452,7 +452,7 @@ C 52200 44800 1 0 0 gnd-1.sym
 T 50300 40200 9 10 1 0 0 0 1
 3
 T 52100 40200 9 10 1 0 0 0 1
-4
+5
 T 50800 44200 9 10 1 0 0 0 2
 Ground points
 on sides of board
