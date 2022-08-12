@@ -1,4 +1,4 @@
-v 20200319 2
+v 20210731 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 C 46300 47100 1 180 1 resistor.sym
 {
