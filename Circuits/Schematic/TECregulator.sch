@@ -1,4 +1,4 @@
-v 20200319 2
+v 20210731 2
 C 40000 40000 0 0 0 Noqsi-title-B.sym
 {
 T 50000 40500 5 10 1 1 0 0 1
@@ -40,9 +40,9 @@ C 47500 47500 1 180 1 PMOS-SO8.sym
 T 48200 46800 5 10 1 1 180 6 1
 refdes=Q1
 T 47500 47500 5 10 0 0 0 0 1
-value=FDS6575
+value=SI4421DY
 T 47500 47500 5 10 0 0 0 0 1
-model-name=FDS6575
+old-model-name=FDS6575
 }
 C 46200 46800 1 0 0 resistor.sym
 {

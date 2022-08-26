@@ -456,6 +456,12 @@ T 42400 46800 5 10 1 1 0 0 1
 refdes=JID
 T 41800 45500 5 10 0 0 0 0 1
 footprint=HEADER6
+T 41800 46700 5 10 0 1 0 0 1
+device=JUMPERS3
+T 42700 46700 5 10 0 1 0 0 1
+description=Header 6 pins
+T 42700 46700 5 10 0 1 0 0 1
+description=Set of 3 jumpers
 }
 C 41700 45400 1 0 0 gnd-1.sym
 N 41800 46500 41800 45700 4
