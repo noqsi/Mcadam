@@ -46,7 +46,7 @@ z
 T 600 500 8 10 1 1 0 0 1
 refdes=Q?
 T 600 295 8 10 0 1 0 0 1
-value=PMBTA92
+value=MMBTA92
 T 600 100 8 10 0 1 0 0 1
 footprint=SOT23
 T 600 700 8 10 0 0 0 0 1
