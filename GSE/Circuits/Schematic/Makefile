@@ -8,7 +8,7 @@ PDFS= GSEboard.1.pdf GSEboard.2.pdf
 
 .PHONY : all check
 
-all : check GSEboard.pdf GSEboard.bom.txt GSEboard.bom2.txt GSEboard.osm
+all : check GSEboard.pdf GSEboard.bom.txt GSEboard.bom2.txt GSEboard.osm GSEboard.screaming.tsv
 
 check : $(SCH)
 	lepton-netlist -L../../../Circuits/Scripts/ -g check-pincount $(SCH)
@@ -25,6 +25,10 @@ GSEboard.bom2.txt : $(SCH)
 
 GSEboard.osm : $(SCH)
 	lepton-netlist -g osmond $(SCH) -o $@
+
+GSEboard.screaming.tsv : parts.tsv GSEboard.bom.txt
+	awk -f ../../../Circuits/Scripts/ScreamingBOM.awk parts.tsv GSEboard.bom.txt >GSEboard.screaming.tsv
+
 
 clean : 
 	rm -rf *.ps *.pdf *.bom.txt *.bom2.txt *.net.txt \#* *~ *.psch *.log *.osm *.net exports
