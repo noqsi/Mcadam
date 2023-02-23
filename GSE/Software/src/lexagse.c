@@ -21,7 +21,7 @@ static void mode( unsigned gpio, unsigned mode ){
 	int code = gpioSetMode( gpio, mode );
 	if( code >= 0 ) return;
 	fprintf( stderr, "GPIO %u ", gpio );
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
 
@@ -34,9 +34,21 @@ static void zero( unsigned gpio ){
 	int code = gpioWrite( gpio, 0 );
 	if( code >= 0 ) return;
 	fprintf( stderr, "GPIO %u ", gpio );
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
+
+// a pulse of uncontrolled duration.
+
+static void pulse( unsigned gpio ){
+	int code = gpioWrite( gpio, 1 );
+	if( code >= 0 ) code = gpioWrite( gpio, 0 );
+	if( code >= 0 ) return;
+	fprintf( stderr, "GPIO %u ", gpio );
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
 
 
 static int adr_reg, data_reg, event_reg;
@@ -75,7 +87,7 @@ static pthread_mutex_t m_out;		// Lock for output stream
 static void lock_out( void ) {
 	int code = pthread_mutex_lock( &m_out );
 	if( code ) {
-		perror( "lexigse" );
+		perror( "lexagse" );
 		exit( 1 );
 	}
 }
@@ -88,7 +100,7 @@ static void unlock_out( void ) {
 	}
 	code = pthread_mutex_unlock( &m_out );
 	if( code ) {
-		perror( "lexigse" );
+		perror( "lexagse" );
 		exit( 1 );
 	}
 }
@@ -117,13 +129,13 @@ static void init_click( uint32_t us, int cycles ) {
 	while( cycles-- ) {
 		code = gpioWaveAddGeneric( 2, pulse );
 		if( code < 0 ) {
-			gpio_perror( "lexigse", code );
+			gpio_perror( "lexagse", code );
 			exit( 1 );
 		}
 	}
 	click_id = gpioWaveCreate();
 	if( click_id < 0 ) {
-		gpio_perror( "lexigse", code );
+		gpio_perror( "lexagse", code );
 		exit( 1 );
 	}
 }
@@ -148,12 +160,12 @@ static void init_force( void ) {
 		pulse[1].usDelay = 0;
 		code = gpioWaveAddGeneric( 2, pulse );
 		if( code < 0 ) {
-			gpio_perror( "lexigse", code );
+			gpio_perror( "lexagse", code );
 			exit( 1 );
 		}
 		force_id[ i ] = gpioWaveCreate();
 		if( force_id[ i ] < 0 ) {
-			gpio_perror( "lexigse", code );
+			gpio_perror( "lexagse", code );
 			exit( 1 );
 		}
 	}
@@ -164,7 +176,7 @@ static void init_force( void ) {
 static void pps( void ) {
 	int code = gpioWrite( PPS, 1^gpioRead( PPS ));
 	if( code < 0 ) {
-		gpio_perror( "lexigse", code );
+		gpio_perror( "lexagse", code );
 		exit( 1 );
 	}
 }
@@ -173,7 +185,7 @@ static void initialize( void ){
 	
 	int code = gpioInitialise();
 	if( code < 0 ) {
-		gpio_perror( "lexigse", code );
+		gpio_perror( "lexagse", code );
 		exit( 1 );
 	}
 	
@@ -181,7 +193,7 @@ static void initialize( void ){
 	
 	code = gpioWaveClear();			// paranoia
 	if( code < 0 ) {
-		gpio_perror( "lexigse", code );
+		gpio_perror( "lexagse", code );
 		exit( 1 );
 	}
 	
@@ -196,25 +208,25 @@ static void initialize( void ){
 		
 	adr_reg = spiOpen( ADR, 1000000, ADRFLAGS );
 	if( adr_reg < 0 ) {
-		gpio_perror( "lexigse", adr_reg );
+		gpio_perror( "lexagse", adr_reg );
 		exit( 1 );
 	}
 	
 	data_reg = spiOpen( DATA, 1000000, DATAFLAGS );
 	if( data_reg < 0 ) {
-		gpio_perror( "lexigse", data_reg );
+		gpio_perror( "lexagse", data_reg );
 		exit( 1 );
 	}
 	
 	event_reg = spiOpen( EVENT, 1000000, EVENTFLAGS );
 	if( event_reg < 0 ) {
-		gpio_perror( "lexigse", event_reg );
+		gpio_perror( "lexagse", event_reg );
 		exit( 1 );
 	}
 		
 	code = pthread_mutex_init( &m_out, NULL );
 	if( code ) {
-		perror( "lexigse" );
+		perror( "lexagse" );
 		exit( 1 );
 	}
 	
@@ -222,13 +234,13 @@ static void initialize( void ){
 	
 	code = gpioSetTimerFunc( PPS_TIMER, 500, pps );
 	if( code ) {
-		gpio_perror( "lexigse", code );
+		gpio_perror( "lexagse", code );
 		exit( 1 );
 	}
 	
 	code = gpioSetTimerFunc( TIME_TIMER, 60000, log_time );
 	if( code ) {
-		gpio_perror( "lexigse", code );
+		gpio_perror( "lexagse", code );
 		exit( 1 );
 	}
 	
@@ -242,7 +254,7 @@ static void xadr( char *tx, char *rx ) {
 	int code = spiXfer( adr_reg, tx, rx, 2 );
 	if ( code == 2 ) return;
 	
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
 
@@ -254,7 +266,7 @@ static void xdata( char *tx, char *rx ) {
 	int code = spiXfer( data_reg, tx, rx, 2 );
 	if ( code == 2 ) return;
 	
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
 
@@ -267,16 +279,51 @@ static void read_event( char *ev ) {
 	int code = spiRead( event_reg, ev, 8 );
 	if( code == 8 ) return;
 	
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
-	
 
+static int check_event( void ) {
+	int rdy = gpioRead( EVENT_RDY );
+	if( rdy < 0 ) {
+		gpio_perror( "lexagse", rdy );
+		exit( 1 );
+	}
+	return rdy;
+}
+
+static void log_event ( void ) {
+	if( !check_event() ) return;
+	
+	uint64_t event;
+	read_event( (char *) &event );
+	
+	unsigned fpm_id = event >> 61 & 3;
+	unsigned mpu_time = event >> 36 & 0x1ffffff;
+	unsigned slow_ph = event >> 24 & 0xfff;
+	unsigned fast_ph = event >> 12 & 0xfff;
+	unsigned dead_time = event >> 5 & 0x7f;
+	unsigned slow = event >> 4 & 1;
+	unsigned fast = event >> 3 & 1;
+	unsigned force = event >> 2 & 1;
+	unsigned over = event >> 1 & 1;
+	unsigned dump = event & 1;
+	
+	lock_out();
+	timetag();
+	printf( "event\t%u\t%u\t%u\t%u\t%u\n", 
+		fpm_id, mpu_time, slow_ph, fast_ph, dead_time );
+	printf( "flags\t%u\t%u\t%u\t%u\t%u\n", 
+		slow, fast, force, over, dump );
+	unlock_out();
+}
+		
+		
 static void test_enable( int enable ) {
 	int code = gpioWrite( TEST_ENABLE, enable );
 	if( code >=0 ) return;
 	
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
 
@@ -285,7 +332,7 @@ static void click( void ) {
 	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
 	if( code >= 0 ) return;
 	
-	gpio_perror( "lexigse", code );
+	gpio_perror( "lexagse", code );
 	exit( 1 );
 }
 
@@ -293,6 +340,8 @@ static void loop( void ){
 
 	char txpair[2], rxpair[2];
 	uint16_t datareg;
+	int detid;
+	unsigned seconds;
 	
 	for(;;){
 		errno = 0;	/* so that EOF is distinguished from error */
@@ -301,7 +350,7 @@ static void loop( void ){
 		int code = getline( &line, &ll, stdin );
 		if (code == -1 ) {
 			if(errno != 0) { 
-                           perror("lexigse");
+                           perror("lexagse");
                            exit( 1 );
                         }
 			return;
@@ -327,6 +376,13 @@ static void loop( void ){
 			sleep( 2 ); 
 		} else if( strncmp( "disable", dbl, 7 ) == 0 ){
 			test_enable( 0 ); 
+		} else if( strncmp( "ready?", dbl, 6 ) == 0 ){
+			lock_out();
+			timetag();
+			printf( "event_rdy\t%d\n", check_event());
+			unlock_out();
+		} else if ( strncmp( "event", dbl, 5 ) == 0 ) {
+			log_event();
 		} else if ( 2 == sscanf( dbl, "xadr %hhx %hhx", 
 			txpair, txpair + 1 )){
 			
@@ -343,11 +399,24 @@ static void loop( void ){
 			timetag();
 			printf( "data_reg\t%u\n", rxpair[1] + (rxpair[0]<<8));
 			unlock_out();
+		} else if ( 1 == sscanf( dbl, "force %d", &detid )){
+			switch( detid ) {
+			case 0:
+				pulse( FORCE0 );
+				break;
+			case 1:
+				pulse( FORCE1 );
+				break;
+			default:
+				fprintf( stderr,
+					"Impossible detector ID: %d\n", detid );
+			}
+		} else if ( 1 == sscanf( dbl, "dwell %u", &seconds )){
+			sleep( seconds );
 		} else if( !*dbl || *dbl == '#' ) {	/* nothing */
 		} else {
 			fprintf(stderr, 
-				"unrecognized lexigse command: %s\n", line );
-			exit( 1 );
+				"unrecognized lexagse command: %s\n", line );
 		}
 		
 		free( line );
