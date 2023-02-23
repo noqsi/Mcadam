@@ -6,7 +6,7 @@ To install it, first issue the following commands in a terminal window to make s
 
 ```
 sudo apt update
-sudo apt ugrade
+sudo apt upgrade
 sudo apt install pigpio
 ```
 
