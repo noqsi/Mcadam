@@ -14,6 +14,7 @@
 
 #define TIME_TIMER	0
 #define PPS_TIMER	1
+#define EVENT_TIMEOUT	10000	/* microseconds */
 
 void gpio_perror(const char *s, int n);
 
@@ -181,6 +182,125 @@ static void pps( void ) {
 	}
 }
 
+// Transfer to/from address register. tx, rx, should be two characters apiece.
+
+static void xadr( char *tx, char *rx ) {
+	int code = spiXfer( adr_reg, tx, rx, 2 );
+	if ( code == 2 ) return;
+	
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
+
+// Transfer to/from data register. tx, rx, should be two characters apiece.
+// 16 bit quantities, big-endian.
+
+static void xdata( char *tx, char *rx ) {
+	int code = spiXfer( data_reg, tx, rx, 2 );
+	if ( code == 2 ) return;
+	
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
+
+// Read event structure as a 64 bit unsigned integer.
+// See test_if.txt for coding.
+
+
+static uint64_t read_event( void ) {
+	uint64_t ev;
+	int code = spiRead( event_reg, (char *) &ev, 8 );
+	if( code == 8 ) return ev;
+	
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
+static int check_event( void ) {
+	int rdy = gpioRead( EVENT_RDY );
+	if( rdy < 0 ) {
+		gpio_perror( "lexagse", rdy );
+		exit( 1 );
+	}
+	return rdy;
+}
+
+static void log_event ( void ) {
+	
+	uint64_t event = read_event();
+	
+	unsigned fpm_id = event >> 61 & 3;
+	unsigned mpu_time = event >> 36 & 0x1ffffff;
+	unsigned slow_ph = event >> 24 & 0xfff;
+	unsigned fast_ph = event >> 12 & 0xfff;
+	unsigned dead_time = event >> 5 & 0x7f;
+	unsigned slow = event >> 4 & 1;
+	unsigned fast = event >> 3 & 1;
+	unsigned force = event >> 2 & 1;
+	unsigned over = event >> 1 & 1;
+	unsigned dump = event & 1;
+	
+	lock_out();
+	timetag();
+	printf( "event\t%u\t%u\t%u\t%u\t%u\n", 
+		fpm_id, mpu_time, slow_ph, fast_ph, dead_time );
+	printf( "flags\t%u\t%u\t%u\t%u\t%u\n", 
+		slow, fast, force, over, dump );
+	unlock_out();
+}
+
+static void flush_events( void ) {
+	while( check_event()) (void) read_event();
+}
+
+// ISR. Log all enqueued events.
+
+static void event_handler( int gpio, int level, uint32_t tick ) {
+	while( check_event()) log_event();
+}
+
+// Here, use a timeout to potentially recover from a lost interrupt.
+
+static void auto_mode( void ) {
+	flush_events();
+	int code = gpioSetISRFunc( 
+		EVENT_RDY, RISING_EDGE, EVENT_TIMEOUT, event_handler );
+        if( code ) {
+                gpio_perror( "xtragse", code );
+                exit( 1 );
+        }
+}
+
+static void idle_mode( void ) {
+	int code = gpioSetISRFunc( EVENT_RDY, RISING_EDGE, 0, NULL );
+        if( code ) {
+                gpio_perror( "xtragse", code );
+                exit( 1 );
+        }
+	input( EVENT_RDY );	// go back to having it a simple input
+}
+		
+		
+static void test_enable( int enable ) {
+	int code = gpioWrite( TEST_ENABLE, enable );
+	if( code >=0 ) return;
+	
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
+
+static void click( void ) {
+	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
+	if( code >= 0 ) return;
+	
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
+
 static void initialize( void ){
 	
 	int code = gpioInitialise();
@@ -247,95 +367,6 @@ static void initialize( void ){
 	log_time();
 }
 
-
-// Transfer to/from address register. tx, rx, should be two characters apiece.
-
-static void xadr( char *tx, char *rx ) {
-	int code = spiXfer( adr_reg, tx, rx, 2 );
-	if ( code == 2 ) return;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
-}
-
-
-// Transfer to/from data register. tx, rx, should be two characters apiece.
-// 16 bit quantities, big-endian.
-
-static void xdata( char *tx, char *rx ) {
-	int code = spiXfer( data_reg, tx, rx, 2 );
-	if ( code == 2 ) return;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
-}
-
-
-// Read event structure. ev should be an 8 character buffer.
-// See test_if.txt for coding.
-
-
-static void read_event( char *ev ) {
-	int code = spiRead( event_reg, ev, 8 );
-	if( code == 8 ) return;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
-}
-
-static int check_event( void ) {
-	int rdy = gpioRead( EVENT_RDY );
-	if( rdy < 0 ) {
-		gpio_perror( "lexagse", rdy );
-		exit( 1 );
-	}
-	return rdy;
-}
-
-static void log_event ( void ) {
-	if( !check_event() ) return;
-	
-	uint64_t event;
-	read_event( (char *) &event );
-	
-	unsigned fpm_id = event >> 61 & 3;
-	unsigned mpu_time = event >> 36 & 0x1ffffff;
-	unsigned slow_ph = event >> 24 & 0xfff;
-	unsigned fast_ph = event >> 12 & 0xfff;
-	unsigned dead_time = event >> 5 & 0x7f;
-	unsigned slow = event >> 4 & 1;
-	unsigned fast = event >> 3 & 1;
-	unsigned force = event >> 2 & 1;
-	unsigned over = event >> 1 & 1;
-	unsigned dump = event & 1;
-	
-	lock_out();
-	timetag();
-	printf( "event\t%u\t%u\t%u\t%u\t%u\n", 
-		fpm_id, mpu_time, slow_ph, fast_ph, dead_time );
-	printf( "flags\t%u\t%u\t%u\t%u\t%u\n", 
-		slow, fast, force, over, dump );
-	unlock_out();
-}
-		
-		
-static void test_enable( int enable ) {
-	int code = gpioWrite( TEST_ENABLE, enable );
-	if( code >=0 ) return;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
-}
-
-
-static void click( void ) {
-	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
-	if( code >= 0 ) return;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
-}
-
 static void loop( void ){
 
 	char txpair[2], rxpair[2];
@@ -382,7 +413,11 @@ static void loop( void ){
 			printf( "event_rdy\t%d\n", check_event());
 			unlock_out();
 		} else if ( strncmp( "event", dbl, 5 ) == 0 ) {
-			log_event();
+			if( check_event()) log_event();
+		} else if( strncmp( "auto", dbl, 4 ) == 0 ) {
+			auto_mode();
+		} else if( strncmp( "idle", dbl, 4 ) == 0 ) {
+			idle_mode();
 		} else if ( 2 == sscanf( dbl, "xadr %hhx %hhx", 
 			txpair, txpair + 1 )){
 			
