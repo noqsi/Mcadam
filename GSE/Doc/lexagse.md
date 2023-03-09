@@ -39,7 +39,7 @@ You may create command scripts and execute them with commands like:
 
 ## FPGA Data Model
 
-The FPGA contains two address registers, an array of data registers, and an event buffer.
+The FPGA contains two address registers, an array of data registers, and an event queue.
 
 The **xadr** command sets the contents of the address  registers. The write address register points to the data register that the **xdata** command writes. The read address register points to the register that the **xdata** command reads. Here are the addresses and functions of the data registers:
 
@@ -75,7 +75,7 @@ x3D | r | 16 | HK\_1\_5 (TIS-1)
 x3E | r | 16 | HK\_1\_6 (TVS-1)
 x3F | r | 16 | HK\_1\_7 (unused)
 
-Event buffer contents:
+Event structure contents:
 
 Name | Bits | Description
 --- | --- | ---
