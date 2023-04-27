@@ -141,6 +141,17 @@ static void init_click( uint32_t us, int cycles ) {
 	}
 }
 
+
+static void click( void ) {
+	if( gpioWaveTxBusy()) return;	// skip the click if busy
+	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
+	if( code >= 0 ) return;
+	
+	gpio_perror( "lexagse", code );
+	exit( 1 );
+}
+
+
 static int force_id[2];
 
 static void init_force( void ) {
@@ -249,6 +260,8 @@ static void log_event ( void ) {
 	printf( "flags\t%u\t%u\t%u\t%u\t%u\n", 
 		slow, fast, force, over, dump );
 	unlock_out();
+
+	if( slow || fast ) click();
 }
 
 static void flush_events( void ) {
@@ -286,15 +299,6 @@ static void idle_mode( void ) {
 static void test_enable( int enable ) {
 	int code = gpioWrite( TEST_ENABLE, enable );
 	if( code >=0 ) return;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
-}
-
-
-static void click( void ) {
-	int code = gpioWaveTxSend( click_id, PI_WAVE_MODE_ONE_SHOT );
-	if( code >= 0 ) return;
 	
 	gpio_perror( "lexagse", code );
 	exit( 1 );
