@@ -221,12 +221,18 @@ static void xdata( char *tx, char *rx ) {
 
 
 static uint64_t read_event( void ) {
-	uint64_t ev;
-	int code = spiRead( event_reg, (char *) &ev, 8 );
-	if( code == 8 ) return ev;
-	
-	gpio_perror( "lexagse", code );
-	exit( 1 );
+	int i;
+	char bytes[8];
+	uint64_t ev = 0;
+	int code = spiRead( event_reg, bytes, 8 );
+	if( code != 8 ) {
+		gpio_perror( "lexagse", code );
+		exit( 1 );
+	}
+	for( i = 0; i < 8; i += 1 ) {		// reverse byte order
+		ev = ev << 8 | bytes[i];
+	}
+	return ev;
 }
 
 static int check_event( void ) {
