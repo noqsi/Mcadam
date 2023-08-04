@@ -263,6 +263,7 @@ static void log_event ( void ) {
 	timetag();
 	printf( "event\t%u\t%u\t%u\t%u\t%u\n", 
 		fpm_id, mpu_time, slow_ph, fast_ph, dead_time );
+	timetag();
 	printf( "flags\t%u\t%u\t%u\t%u\t%u\n", 
 		slow, fast, force, over, dump );
 	unlock_out();
@@ -435,6 +436,8 @@ static void loop( void ){
 			lock_out();
 			timetag();
 			printf( "last_adr\t%x\t%x\n", rxpair[0], rxpair[1] );
+			timetag();
+			printf( "current_adr\t%x\t%x\n", txpair[0], txpair[1] );
 			unlock_out();
 		} else if ( 1 == sscanf( dbl, "xdata %hu", &datareg )){
 			txpair[0] = datareg>>8;
@@ -442,7 +445,10 @@ static void loop( void ){
 			xdata( txpair, rxpair );
 			lock_out();
 			timetag();
-			printf( "data_reg\t%u\n", rxpair[1] + (rxpair[0]<<8));
+			printf( "data_out\t%u\n", 
+				txpair[1] + (txpair[0]<<8));
+			timetag();
+			printf( "data_in\t%u\n", rxpair[1] + (rxpair[0]<<8));
 			unlock_out();
 		} else if ( 1 == sscanf( dbl, "force %d", &detid )){
 			switch( detid ) {
