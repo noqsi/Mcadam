@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     32370,        765]
-NotebookOptionsPosition[     29743,        727]
-NotebookOutlinePosition[     30136,        743]
-CellTagsIndexPosition[     30093,        740]
+NotebookDataLength[     33601,        780]
+NotebookOptionsPosition[     30973,        742]
+NotebookOutlinePosition[     31366,        758]
+CellTagsIndexPosition[     31323,        755]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -216,7 +216,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.899987120710608*^9, 3.8999871466379747`*^9}, 
    3.899988183665386*^9, {3.900063765673974*^9, 3.900063767129033*^9}, {
    3.900173929490411*^9, 3.90017394979536*^9}},
- CellLabel->"In[90]:=",ExpressionUUID->"27f605d0-a74c-4b0e-9f16-3c6d6642680b"],
+ CellLabel->"In[35]:=",ExpressionUUID->"27f605d0-a74c-4b0e-9f16-3c6d6642680b"],
 
 Cell[BoxData[
  RowBox[{
@@ -229,7 +229,7 @@ Cell[BoxData[
    3.900173878659745*^9, 3.900173879297826*^9}, 3.900174358345893*^9, {
    3.900174453574587*^9, 3.900174454278591*^9}, {3.900174587377037*^9, 
    3.9001746107321978`*^9}},
- CellLabel->"In[91]:=",ExpressionUUID->"92843710-6778-4385-83ad-9e22a8d6cbb6"],
+ CellLabel->"In[36]:=",ExpressionUUID->"92843710-6778-4385-83ad-9e22a8d6cbb6"],
 
 Cell[BoxData[
  RowBox[{
@@ -490,39 +490,36 @@ Cell[BoxData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"enabled", "=", "False"}], ";"}], "\n", 
+  RowBox[{"enableState", "=", "\"\<Disabled\>\""}], ";"}], "\n", 
  RowBox[{
-  RowBox[{
-   RowBox[{"enableButtonText", "[", "True", "]"}], "=", "\"\<Disable\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"enableButtonText", "[", "False", "]"}], "=", "\"\<Enable\>\""}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{"toggleEnable", "[", "True", "]"}], ":=", 
+  RowBox[{"enableAction", "[", 
+   RowBox[{"\"\<Disabled\>\"", ",", "_"}], "]"}], ":=", 
   RowBox[{"(", 
    RowBox[{
     RowBox[{"rawCommand", "[", "\"\<disable\>\"", "]"}], ";", 
-    RowBox[{"enabled", "=", "False"}], ";"}], 
+    RowBox[{"enableState", "=", "\"\<Disabled\>\""}]}], 
    ")"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"toggleEnable", "[", "False", "]"}], ":=", 
+  RowBox[{"enableAction", "[", 
+   RowBox[{"\"\<Enabled\>\"", ",", "_"}], "]"}], ":=", 
   RowBox[{"(", 
    RowBox[{
-    RowBox[{"rawCommand", "[", "\"\<enable\>\"", "]"}], ";", " ", 
-    RowBox[{"enabled", "=", "True"}], ";"}], ")"}]}]}], "Input",
+    RowBox[{"rawCommand", "[", "\"\<enable\>\"", "]"}], ";", 
+    RowBox[{"enableState", "=", "\"\<Enabled\>\""}]}], ")"}]}]}], "Input",
  CellChangeTimes->{{3.9000636966225567`*^9, 3.9000637224625883`*^9}, {
   3.900172138120105*^9, 3.900172165735671*^9}, {3.900172303784384*^9, 
-  3.9001723236988783`*^9}},
- CellLabel->"In[82]:=",ExpressionUUID->"d6264541-1192-488b-9f08-cb4c32270c78"],
+  3.9001723236988783`*^9}, {3.9002503687697144`*^9, 3.900250513623864*^9}, {
+  3.90025054618087*^9, 3.900250560126154*^9}, {3.900250593629116*^9, 
+  3.900250630759201*^9}, {3.900251527921589*^9, 3.9002515693722982`*^9}, {
+  3.9002516332686787`*^9, 3.900251640509532*^9}, {3.900251683140379*^9, 
+  3.900251713816284*^9}, {3.900252506748362*^9, 3.9002525849155197`*^9}},
+ CellLabel->"In[65]:=",ExpressionUUID->"d6264541-1192-488b-9f08-cb4c32270c78"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"startGSE", "[", "]"}], ";"}]], "Input",
- CellChangeTimes->{{3.90017513058173*^9, 
-  3.900175137786275*^9}},ExpressionUUID->"618de8d7-62ac-4d6d-a30d-\
-cbdf6b0155d8"],
+ CellChangeTimes->{{3.90017513058173*^9, 3.900175137786275*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"618de8d7-62ac-4d6d-a30d-cbdf6b0155d8"],
 
 Cell[BoxData[
  RowBox[{"controlPanel", "=", 
@@ -531,70 +528,79 @@ Cell[BoxData[
     RowBox[{"CreateDocument", "[", "\[IndentingNewLine]", 
      RowBox[{"{", "\[IndentingNewLine]", 
       RowBox[{"Column", "[", "\[IndentingNewLine]", 
-       RowBox[{"{", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"Spacer", "[", 
-          RowBox[{"{", 
-           RowBox[{"0", ",", "10"}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"Button", "[", 
-          RowBox[{
-           RowBox[{"Dynamic", "[", 
-            RowBox[{"enableButtonText", "[", "enabled", "]"}], "]"}], ",", 
-           RowBox[{"toggleEnable", "[", "enabled", "]"}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Spacer", "[", 
-          RowBox[{"{", 
-           RowBox[{"0", ",", "20"}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"TextCell", "[", "\"\<FPGA Interface\>\"", "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Row", "[", "\[IndentingNewLine]", 
-          RowBox[{"{", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"TextCell", "[", "\"\<Read address: \>\"", "]"}], ",", 
-            RowBox[{"Dynamic", "[", 
-             RowBox[{"TextCell", "[", "shadowReadAddr", "]"}], "]"}], ",", 
-            RowBox[{"Spacer", "[", "40", "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"TextCell", "[", "\"\<Data in: \>\"", "]"}], ",", " ", 
-            RowBox[{"Dynamic", "[", "lastDataIn", "]"}], ",", 
-            RowBox[{"Spacer", "[", "40", "]"}], ",", 
-            RowBox[{"TextCell", "[", "\"\<Write address: \>\"", "]"}], ",", 
-            RowBox[{"Dynamic", "[", 
-             RowBox[{"TextCell", "[", "shadowWriteAddr", "]"}], "]"}], ",", 
-            RowBox[{"Spacer", "[", "40", "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"TextCell", "[", "\"\<Data out: \>\"", "]"}], ",", " ", 
-            RowBox[{"Dynamic", "[", "lastDataOut", "]"}], ",", 
-            RowBox[{"Spacer", "[", "40", "]"}]}], "}"}], 
-          "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"Spacer", "[", 
-          RowBox[{"{", 
-           RowBox[{"0", ",", "20"}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
-         RowBox[{"Row", "[", "\[IndentingNewLine]", 
-          RowBox[{"{", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"Column", "[", "\[IndentingNewLine]", 
-             RowBox[{
-              RowBox[{"{", "\[IndentingNewLine]", 
-               RowBox[{
-                RowBox[{"Row", "[", "\[IndentingNewLine]", 
-                 RowBox[{"{", "\[IndentingNewLine]", 
-                  RowBox[{
-                   RowBox[{"TextCell", "[", "\"\<Housekeeping  \>\"", "]"}], 
-                   ",", 
-                   RowBox[{"Button", "[", 
+       RowBox[{
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Spacer", "[", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "10"}], "}"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", "\[IndentingNewLine]", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{"\"\<Interface:  \>\"", ",", "\[IndentingNewLine]", 
+             RowBox[{"SetterBar", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"enableState", ",", "enableAction"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Enabled\>\"", ",", "\"\<Disabled\>\""}], "}"}]}],
+               "]"}]}], "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", 
+           "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Spacer", "[", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "20"}], "}"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"TextCell", "[", "\"\<FPGA Interface\>\"", "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", "\[IndentingNewLine]", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"TextCell", "[", "\"\<Read address: \>\"", "]"}], ",", 
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"TextCell", "[", "shadowReadAddr", "]"}], "]"}], ",", 
+             RowBox[{"Spacer", "[", "40", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"TextCell", "[", "\"\<Data in: \>\"", "]"}], ",", " ", 
+             RowBox[{"Dynamic", "[", "lastDataIn", "]"}], ",", 
+             RowBox[{"Spacer", "[", "40", "]"}], ",", 
+             RowBox[{"TextCell", "[", "\"\<Write address: \>\"", "]"}], ",", 
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"TextCell", "[", "shadowWriteAddr", "]"}], "]"}], ",", 
+             RowBox[{"Spacer", "[", "40", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"TextCell", "[", "\"\<Data out: \>\"", "]"}], ",", " ", 
+             RowBox[{"Dynamic", "[", "lastDataOut", "]"}], ",", 
+             RowBox[{"Spacer", "[", "40", "]"}]}], "}"}], 
+           "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Spacer", "[", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "20"}], "}"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", "\[IndentingNewLine]", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"Column", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"{", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"Row", "[", "\[IndentingNewLine]", 
+                  RowBox[{"{", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"TextCell", "[", "\"\<Housekeeping  \>\"", "]"}], 
+                    ",", 
+                    RowBox[{"Button", "[", 
                     RowBox[{"\"\<Refresh\>\"", ",", 
                     RowBox[{"Scan", "[", 
                     RowBox[{"readRegister", ",", "HKchannels"}], "]"}], ",", 
                     RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], 
                     "]"}]}], "\[IndentingNewLine]", "}"}], 
-                 "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
-                RowBox[{"Spacer", "[", 
-                 RowBox[{"{", 
-                  RowBox[{"0", ",", "10"}], "}"}], "]"}], ",", 
-                "\[IndentingNewLine]", 
-                RowBox[{"TableForm", "[", 
-                 RowBox[{"Transpose", "[", 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"Spacer", "[", 
                   RowBox[{"{", 
-                   RowBox[{
+                   RowBox[{"0", ",", "10"}], "}"}], "]"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"TableForm", "[", 
+                  RowBox[{"Transpose", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
                     RowBox[{"TextCell", "/@", "HKchannels"}], ",", 
                     RowBox[{"Map", "[", 
                     RowBox[{
@@ -603,35 +609,35 @@ Cell[BoxData[
                     RowBox[{"signed16", "[", 
                     RowBox[{"cachedRegister", "[", "#", "]"}], "]"}], "]"}], 
                     "&"}], ",", "HKchannels"}], "]"}]}], "}"}], "]"}], 
-                 "]"}]}], "\[IndentingNewLine]", "}"}], ",", 
-              "\[IndentingNewLine]", 
-              RowBox[{"BaselinePosition", "\[Rule]", "Top"}]}], 
-             "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"Spacer", "[", "60", "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"Column", "[", "\[IndentingNewLine]", 
-             RowBox[{
-              RowBox[{"{", "\[IndentingNewLine]", 
-               RowBox[{
-                RowBox[{"Row", "[", "\[IndentingNewLine]", 
-                 RowBox[{"{", "\[IndentingNewLine]", 
-                  RowBox[{
-                   RowBox[{"TextCell", "[", "\"\<FPGA Registers  \>\"", "]"}],
-                    ",", 
-                   RowBox[{"Button", "[", 
+                  "]"}]}], "\[IndentingNewLine]", "}"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"BaselinePosition", "\[Rule]", "Top"}]}], 
+              "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"Spacer", "[", "60", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"Column", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"{", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"Row", "[", "\[IndentingNewLine]", 
+                  RowBox[{"{", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{
+                    "TextCell", "[", "\"\<FPGA Registers  \>\"", "]"}], ",", 
+                    RowBox[{"Button", "[", 
                     RowBox[{"\"\<Refresh\>\"", ",", 
                     RowBox[{"Scan", "[", 
                     RowBox[{"readRegister", ",", "FPGAregs"}], "]"}], ",", 
                     RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], 
                     "]"}]}], "\[IndentingNewLine]", "}"}], 
-                 "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
-                RowBox[{"Spacer", "[", 
-                 RowBox[{"{", 
-                  RowBox[{"0", ",", "10"}], "}"}], "]"}], ",", 
-                "\[IndentingNewLine]", 
-                RowBox[{"TableForm", "[", 
-                 RowBox[{"Transpose", "[", 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"Spacer", "[", 
                   RowBox[{"{", 
-                   RowBox[{
+                   RowBox[{"0", ",", "10"}], "}"}], "]"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"TableForm", "[", 
+                  RowBox[{"Transpose", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
                     RowBox[{"TextCell", "/@", "FPGAregs"}], ",", 
                     RowBox[{"Map", "[", 
                     RowBox[{
@@ -640,10 +646,14 @@ Cell[BoxData[
                     RowBox[{"signed16", "[", 
                     RowBox[{"cachedRegister", "[", "#", "]"}], "]"}], "]"}], 
                     "&"}], ",", "FPGAregs"}], "]"}]}], "}"}], "]"}], "]"}]}], 
-               "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
-              RowBox[{"BaselinePosition", "\[Rule]", "Top"}]}], 
-             "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}], 
-          "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}], 
+                "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"BaselinePosition", "\[Rule]", "Top"}]}], 
+              "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"BaseStyle", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"ShowStringCharacters", "\[Rule]", "False"}], "}"}]}]}], 
        "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "}"}], 
      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
     RowBox[{"shadowReadAddr", "=", " ", 
@@ -697,8 +707,13 @@ Cell[BoxData[
    3.900164741916316*^9}, {3.900167751436005*^9, 3.9001678501772203`*^9}, 
    3.900168194476676*^9, {3.900170429984761*^9, 3.900170442561528*^9}, {
    3.90017058260504*^9, 3.9001705894270573`*^9}, 3.900170663286044*^9, {
-   3.900172207743166*^9, 3.900172292736314*^9}},
- CellLabel->"In[87]:=",ExpressionUUID->"3901ba9f-82e7-46b6-9e88-a6e0596b97d5"],
+   3.900172207743166*^9, 3.900172292736314*^9}, {3.9002501213030787`*^9, 
+   3.9002502400042953`*^9}, {3.900251039224419*^9, 3.900251099223138*^9}, {
+   3.900251165297228*^9, 3.900251172848827*^9}, {3.900251327616145*^9, 
+   3.900251348728003*^9}, {3.9002517786361647`*^9, 3.900251795965419*^9}, {
+   3.900252841920601*^9, 3.900252895360424*^9}, {3.9002529265081882`*^9, 
+   3.9002529429688*^9}, {3.900254228562667*^9, 3.900254235057122*^9}},
+ CellLabel->"In[69]:=",ExpressionUUID->"3901ba9f-82e7-46b6-9e88-a6e0596b97d5"],
 
 Cell[BoxData[
  RowBox[{
@@ -710,7 +725,7 @@ Cell[BoxData[
   ";"}]], "Input",
  CellChangeTimes->{{3.900084140948997*^9, 3.900084203104353*^9}, 
    3.900084376918895*^9},
- CellLabel->"In[67]:=",ExpressionUUID->"170b3ef6-57f6-4afd-80d5-110354b9b32b"],
+ CellLabel->"In[70]:=",ExpressionUUID->"170b3ef6-57f6-4afd-80d5-110354b9b32b"],
 
 Cell[BoxData[
  RowBox[{
@@ -723,10 +738,10 @@ Cell[BoxData[
 
  CellChangeTimes->{{3.900084263647849*^9, 3.9000843259191008`*^9}, {
    3.900084371348153*^9, 3.9000843930476313`*^9}, 3.900084662964633*^9},
- CellLabel->"In[68]:=",ExpressionUUID->"10fb33e8-4e8f-4e91-85ca-40e2ec857fc6"]
+ CellLabel->"In[71]:=",ExpressionUUID->"10fb33e8-4e8f-4e91-85ca-40e2ec857fc6"]
 },
 WindowSize->{798, 986},
-WindowMargins->{{395, Automatic}, {-38, Automatic}},
+WindowMargins->{{399, Automatic}, {-98, Automatic}},
 FrontEndVersion->"12.2 for Linux ARM (32-bit) (March 25, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"2c0b814e-1d2a-4f16-9227-9e9d94769e90"
@@ -762,11 +777,11 @@ Cell[16718, 448, 361, 9, 30, "Input",ExpressionUUID->"7b74eb15-cc08-4785-9e4f-c8
 Cell[17082, 459, 337, 6, 30, "Input",ExpressionUUID->"fc2696b1-8fb8-4c85-8b02-8e4e2b877cbe"],
 Cell[17422, 467, 149, 3, 35, "Text",ExpressionUUID->"0f9366f6-3957-4407-94b8-df40164dfcb0"],
 Cell[17574, 472, 741, 16, 141, "Input",ExpressionUUID->"17fac4b0-2c3f-4edb-a7f5-02d90d66972e"],
-Cell[18318, 490, 1032, 27, 119, "Input",ExpressionUUID->"d6264541-1192-488b-9f08-cb4c32270c78"],
-Cell[19353, 519, 199, 5, 30, "Input",ExpressionUUID->"618de8d7-62ac-4d6d-a30d-cbdf6b0155d8"],
-Cell[19555, 526, 9322, 174, 1329, "Input",ExpressionUUID->"3901ba9f-82e7-46b6-9e88-a6e0596b97d5"],
-Cell[28880, 702, 383, 10, 30, "Input",ExpressionUUID->"170b3ef6-57f6-4afd-80d5-110354b9b32b"],
-Cell[29266, 714, 473, 11, 30, "Input",ExpressionUUID->"10fb33e8-4e8f-4e91-85ca-40e2ec857fc6"]
+Cell[18318, 490, 1226, 25, 119, "Input",ExpressionUUID->"d6264541-1192-488b-9f08-cb4c32270c78"],
+Cell[19547, 517, 218, 4, 30, "Input",ExpressionUUID->"618de8d7-62ac-4d6d-a30d-cbdf6b0155d8"],
+Cell[19768, 523, 10339, 192, 1461, "Input",ExpressionUUID->"3901ba9f-82e7-46b6-9e88-a6e0596b97d5"],
+Cell[30110, 717, 383, 10, 30, "Input",ExpressionUUID->"170b3ef6-57f6-4afd-80d5-110354b9b32b"],
+Cell[30496, 729, 473, 11, 30, "Input",ExpressionUUID->"10fb33e8-4e8f-4e91-85ca-40e2ec857fc6"]
 }
 ]
 *)
