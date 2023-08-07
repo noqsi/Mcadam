@@ -114,6 +114,12 @@ static void log_time( void ){
 	unlock_out();
 }
 
+static void done( void ){
+	lock_out();
+	printf( "done\n" );
+	unlock_out();
+}
+
 static int click_id;
 
 static void init_click( uint32_t us, int cycles ) {
@@ -376,6 +382,7 @@ static void initialize( void ){
 	}
 	
 	log_time();
+	done();
 }
 
 static void loop( void ){
@@ -411,7 +418,10 @@ static void loop( void ){
 		timetag();
 		printf( "command\t%s", line );
 		unlock_out();
-		if( strncmp( "click", dbl, 5 ) == 0 ) {
+		if( strncmp( "exit", dbl, 4) == 0 ) {
+			done();
+			return;
+		} else if( strncmp( "click", dbl, 5 ) == 0 ) {
 			click();
 		} else if( strncmp( "enable", dbl, 6 ) == 0 ){
 			test_enable( 1 );
@@ -471,6 +481,7 @@ static void loop( void ){
 		}
 		
 		free( line );
+		done();
 	}
 }
 		
