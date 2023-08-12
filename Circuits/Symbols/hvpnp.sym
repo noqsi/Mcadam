@@ -51,3 +51,7 @@ T 600 100 8 10 0 1 0 0 1
 footprint=SOT23
 T 600 700 8 10 0 0 0 0 1
 symversion=0.1
+T 800 1000 8 10 0 0 0 0 1
+file=Models/MMBTA92.mod
+T 800 1200 8 10 0 0 0 0 1
+spice-prototype=X? %pinseq MMBTA92

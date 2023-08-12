@@ -1,4 +1,4 @@
-v 20200319 2
+v 20210731 2
 T 300 3500 5 8 0 0 0 0 1
 description=generic dual operational amplifier, SO8
 T 300 3300 5 8 0 0 0 0 1
@@ -70,3 +70,8 @@ T 1700 900 8 10 0 0 0 0 1
 value=ADA4805-2ARMZ
 T 2900 700 8 10 0 0 0 0 1
 model-name=ADA4805
+T 2300 1600 8 10 0 1 0 0 2
+spice-prototype=X1? #3 #2 #8 #4 #1 #8 model-name@
+X2? #5 #6 #8 #4 #7 #8 model-name@
+T 2300 1400 8 10 0 0 0 0 1
+file=Models/ADA4805.cir
