@@ -1,4 +1,4 @@
-v 20200319 2
+v 20210731 2
 T -100 2500 5 8 0 0 0 0 1
 symversion=1.0
 T -100 3100 5 8 0 0 0 0 1
@@ -66,3 +66,5 @@ T 1200 1600 8 10 0 0 0 0 1
 footprint=MSOP10
 T 1800 600 8 10 0 0 0 0 1
 spec=N/A
+T 1700 1400 8 10 0 0 0 0 1
+spice-prototype=* U? LT1715 NOT SIMULATED
