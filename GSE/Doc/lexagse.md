@@ -125,7 +125,7 @@ Disable automatic event collection.
 Suspend command input for the specified number of seconds, thus maintaining the current configuration. This is good for waiting for temperature to stabilize following a change in TEC current, or for timed exposures.
 
 
-## Output
+Q## Output
 
 Output is in the form of lines of text containing fields separated by tabs. The first field is a time stamp in seconds since January 1, 1970 (POSIX standard). The second field is a tag that identifies the data type. Additional fields contain the data.
 
