@@ -55,6 +55,9 @@ MPU.bom2.txt : $(ALLSRC)
 MPU.screaming.tsv : parts.tsv MPU.bom.txt
 	awk -f ../Scripts/ScreamingBOM.awk parts.tsv MPU.bom.txt >MPU.screaming.tsv
 
+MPU.LEXA_BOM.tsv : parts.tsv MPU.bom2.txt
+	awk -f ../Scripts/LEXA_BOM.awk parts.tsv MPU.bom2.txt >MPU.LEXA_BOM.tsv
+
 MPU.pdf : $(MPUPDF)
 	pdftk $(MPUPDF) cat output MPU.pdf
 	
