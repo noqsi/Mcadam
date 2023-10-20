@@ -5,9 +5,9 @@ LDFLAGS=-pthread
 BIN=/usr/local/bin
 
 
-lexagse: lexagse.o gpio_perror.o
+lexagse: lexagse.o record.o gpio_perror.o
 
-lexagse.o : gpio.h
+lexagse.o record.o: gpio.h record.h
 
 install: lexagse
 	mkdir -p $(BIN)

@@ -98,7 +98,7 @@ Asserts the TEST_ENABLE pin on the MPU test connector, allowing the GSE to read 
 Deasserts the TEST_ENABLE pin. Yields no output.
 
 ### ready?
-Prints the value of the EVENT_READY signal. Output tag is **event\_rdy**, output data is 1 for ready, otherwise 0.
+Prints the value of the EVENT\_READY signal. Output tag is **event\_rdy**, output data is 1 for ready, otherwise 0.
 
 ### xadr *wadr* *radr*
 

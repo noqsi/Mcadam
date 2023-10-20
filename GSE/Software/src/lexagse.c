@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include <time.h>
 #include <ctype.h>
+#include "record.h"
 
 
 #include "gpio.h"
@@ -287,12 +288,36 @@ static void event_handler( int gpio, int level, uint32_t tick ) {
 	while( check_event()) log_event();
 }
 
+// Alternate ISR to record events
+
+static void event_recorder( int gpio, int level, uint32_t tick ) {
+	while( check_event()) {
+		uint64_t ev = read_event();
+		record_event( ev );
+		unsigned slow = ev >> 4 & 1;
+		unsigned fast = ev >> 3 & 1;
+		if( slow || fast ) click();
+	}
+}
+
 // Here, use a timeout to potentially recover from a lost interrupt.
 
 static void auto_mode( void ) {
 	flush_events();
 	int code = gpioSetISRFunc( 
 		EVENT_RDY, RISING_EDGE, EVENT_TIMEOUT, event_handler );
+        if( code ) {
+                gpio_perror( "xtragse", code );
+                exit( 1 );
+        }
+}
+
+
+static void record_mode( void ) {
+	clear_recorder();
+	flush_events();
+	int code = gpioSetISRFunc( 
+		EVENT_RDY, RISING_EDGE, EVENT_TIMEOUT, event_recorder );
         if( code ) {
                 gpio_perror( "xtragse", code );
                 exit( 1 );
@@ -437,8 +462,14 @@ static void loop( void ){
 			if( check_event()) log_event();
 		} else if( strncmp( "auto", dbl, 4 ) == 0 ) {
 			auto_mode();
+		} else if( strncmp( "record", dbl, 6 ) == 0 ) {
+			record_mode();
 		} else if( strncmp( "idle", dbl, 4 ) == 0 ) {
 			idle_mode();
+		} else if( strncmp( "playback", dbl, 8 ) == 0 ) {
+			lock_out();
+			while( play_event());
+			unlock_out();
 		} else if ( 2 == sscanf( dbl, "xadr %hhx %hhx", 
 			txpair, txpair + 1 )){
 			

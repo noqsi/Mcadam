@@ -1,4 +1,4 @@
-## Jtp (MPU)
+ ## Jtp (MPU)
 
 Jtp has every digital signal from the interface between the analog part of the MPU and the FPGA.
 
