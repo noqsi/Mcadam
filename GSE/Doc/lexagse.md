@@ -115,17 +115,23 @@ Pulse the FORCE TRIGGER signal for the detector specified by *id*, which must be
 Collect any ready event. Yields output with **event** and **flags** tags.
 
 ### auto
-Automatically collect ready events as they arrive. Same output as **event**, but the number of events is unlimited. Commands will still be processed while this is in progress.
+Automatically collect and output ready events as they arrive. Same output as **event**, but the number of events is unlimited. Commands will still be processed while this is in progress.
+
+### record
+Automatically collect ready events as they arrive. No immediate output: events are saved until a **playback** command is issued. Commands will still be processed while this is in progress.
 
 ### idle
 Disable automatic event collection.
+
+### playback
+Output all saved events as lines with **event** and **flags** tags.
 
 ### dwell *seconds*
 
 Suspend command input for the specified number of seconds, thus maintaining the current configuration. This is good for waiting for temperature to stabilize following a change in TEC current, or for timed exposures.
 
 
-Q## Output
+## Output
 
 Output is in the form of lines of text containing fields separated by tabs. The first field is a time stamp in seconds since January 1, 1970 (POSIX standard). The second field is a tag that identifies the data type. Additional fields contain the data.
 
