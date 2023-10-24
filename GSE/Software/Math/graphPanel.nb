@@ -1,0 +1,356 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15406,        348]
+NotebookOptionsPosition[     14093,        322]
+NotebookOutlinePosition[     14488,        338]
+CellTagsIndexPosition[     14445,        335]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"flagBits", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<Fast\>\"", "->", "1"}], ",", 
+     RowBox[{"\"\<Slow\>\"", "->", "2"}], ",", 
+     RowBox[{"\"\<Forced\>\"", "->", "4"}], ",", 
+     RowBox[{"\"\<Over\>\"", "->", "8"}], ",", 
+     RowBox[{"\"\<Dump\>\"", "->", "16"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.9019659863299093`*^9, 3.901966035732848*^9}, {
+  3.901966078264205*^9, 3.901966081300324*^9}, {3.902150049351267*^9, 
+  3.902150058643607*^9}, {3.902325927501524*^9, 3.902325967045952*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"365409b3-6603-494a-aaca-32c055fec0cc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"flagBitNames", "=", 
+  RowBox[{"flagBits", "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "1"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.902150062268445*^9, 3.902150114491702*^9}, {
+  3.902325981541952*^9, 3.902325982033506*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"1eb77e68-c8df-45e0-910b-3c5dfa34672e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Fast\"\>", ",", "\<\"Slow\"\>", ",", "\<\"Forced\"\>", 
+   ",", "\<\"Over\"\>", ",", "\<\"Dump\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.9021500865623693`*^9, 3.9021501177811337`*^9, 3.902160620318437*^9, 
+   3.902325891361986*^9, {3.902325974766423*^9, 3.9023259828794117`*^9}, 
+   3.902332447281432*^9, 3.9023333158171253`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"61ae7ea7-24a6-42ad-acb2-949873e8ef71"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"eventPlot", "[", 
+   RowBox[{
+   "data_", ",", "detector_", ",", "include_", ",", "exclude_", ",", 
+    "plot_"}], "]"}], ":=", 
+  RowBox[{"Histogram", "[", 
+   RowBox[{"selectData", "[", 
+    RowBox[{"data", ",", "detector", ",", 
+     RowBox[{"FlagCode", "[", "include", "]"}], ",", 
+     RowBox[{"BitNot", "[", 
+      RowBox[{"FlagCode", "[", "exclude", "]"}], "]"}], ",", "plot"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.902248367515943*^9, 3.902248445833387*^9}, {
+  3.9022484991331997`*^9, 3.902248499819269*^9}, {3.902248642564137*^9, 
+  3.902248665504023*^9}, {3.9022487057314034`*^9, 3.902248739577704*^9}, {
+  3.902325755297298*^9, 3.90232576855928*^9}, {3.9023265413201733`*^9, 
+  3.902326579805943*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"4c9582b4-89c6-45cc-8108-f180d07782c2"],
+
+Cell["\<\
+For a light curve, the data is just the times (keys). Subtract the start time \
+to keep numbers reasonable.\
+\>", "Text",
+ CellChangeTimes->{{3.9023274603189497`*^9, 3.902327478464007*^9}, {
+  3.902327522859538*^9, 3.902327551929256*^9}, {3.902331652620532*^9, 
+  3.902331655058424*^9}},ExpressionUUID->"bd6859a0-752f-4696-b7b3-\
+8f72a578af2e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selectData", "[", 
+   RowBox[{
+   "data_", ",", "detector_", ",", "imask_", ",", "xmask_", ",", 
+    "\"\<Light Curve\>\""}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Keys", "[", 
+    RowBox[{"selectEvents", "[", 
+     RowBox[{"data", ",", "detector", ",", "imask", ",", "xmask"}], "]"}], 
+    "]"}], "-", 
+   RowBox[{"data", "[", "\"\<start\>\"", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.9022490623033867`*^9, 3.902249136708438*^9}, {
+  3.902249198369175*^9, 3.902249232281247*^9}, {3.902326609750057*^9, 
+  3.902326647186945*^9}, {3.902327364334332*^9, 3.9023273711497087`*^9}, {
+  3.902327491251788*^9, 3.9023275025465937`*^9}, {3.902331636513837*^9, 
+  3.9023316624762163`*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"f49b52c2-691f-4ef7-a2b1-7018470071cc"],
+
+Cell["\<\
+The detector id is column 1 of the event association, and the flag bits are \
+column 6.\
+\>", "Text",
+ CellChangeTimes->{{3.9023285501441097`*^9, 3.902328594253664*^9}, {
+  3.902330245916936*^9, 
+  3.9023302492821903`*^9}},ExpressionUUID->"4b53f863-4e7c-4c7f-a0c4-\
+81e769cb3baa"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selectEvents", "[", 
+   RowBox[{"data_", ",", "detector_", ",", "imask_", ",", "xmask_"}], "]"}], ":=", 
+  RowBox[{"Select", "[", 
+   RowBox[{
+    RowBox[{"data", "[", "\"\<events\>\"", "]"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"#", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "==", "detector"}], "&&", 
+      RowBox[{
+       RowBox[{"BitAnd", "[", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "6", "]"}], "]"}], ",", "imask"}], "]"}], " ", "!=", 
+       "0"}], " ", "&&", " ", 
+      RowBox[{
+       RowBox[{"BitAnd", "[", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "6", "]"}], "]"}], ",", "xmask"}], "]"}], "==", 
+       "0"}]}], "&"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.902327574301421*^9, 3.9023275797639313`*^9}, {
+  3.90232841434093*^9, 3.902328433732711*^9}, {3.9023286037658777`*^9, 
+  3.902328698013774*^9}, {3.902329710908888*^9, 3.902329959679253*^9}, {
+  3.90233021897841*^9, 3.902330225304427*^9}, {3.902331614273964*^9, 
+  3.902331626852207*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"94f7fd97-0fcb-49bb-8fc9-25430c0b3f68"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selectData", "[", 
+   RowBox[{
+   "data_", ",", "detector_", ",", "imask_", ",", "xmask_", ",", 
+    "\"\<Slow PH\>\""}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Values", "[", 
+    RowBox[{"selectEvents", "[", 
+     RowBox[{"data", ",", "detector", ",", "imask", ",", "xmask"}], "]"}], 
+    "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "3"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9022490623033867`*^9, 3.902249136708438*^9}, {
+  3.902249198369175*^9, 3.902249232281247*^9}, {3.902326609750057*^9, 
+  3.902326647186945*^9}, {3.902327364334332*^9, 3.9023273711497087`*^9}, {
+  3.902327491251788*^9, 3.9023275025465937`*^9}, {3.9023315469436903`*^9, 
+  3.902331553316234*^9}, {3.9023316876548223`*^9, 3.9023317314208517`*^9}, {
+  3.9023317942344227`*^9, 3.9023318044030733`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"2fcbaf29-84ee-4c19-8db2-23b8f6bbcd90"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selectData", "[", 
+   RowBox[{
+   "data_", ",", "detector_", ",", "imask_", ",", "xmask_", ",", 
+    "\"\<Fast PH\>\""}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Values", "[", 
+    RowBox[{"selectEvents", "[", 
+     RowBox[{"data", ",", "detector", ",", "imask", ",", "xmask"}], "]"}], 
+    "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "4"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9022490623033867`*^9, 3.902249136708438*^9}, {
+  3.902249198369175*^9, 3.902249232281247*^9}, {3.902326609750057*^9, 
+  3.902326647186945*^9}, {3.902327364334332*^9, 3.9023273711497087`*^9}, {
+  3.902327491251788*^9, 3.9023275025465937`*^9}, {3.9023315469436903`*^9, 
+  3.902331553316234*^9}, {3.9023316876548223`*^9, 3.9023317314208517`*^9}, {
+  3.9023317942344227`*^9, 3.9023318044030733`*^9}, {3.9023318347965307`*^9, 
+  3.9023318408384743`*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"d9b20022-ad94-4dae-a37e-d51fe25fbd04"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"createPlot", "[", "tag_", "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"plotData", "[", "tag", "]"}], "=", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"\"\<start\>\"", "->", "0"}], ",", 
+       RowBox[{"\"\<events\>\"", "->", 
+        RowBox[{"<|", "|>"}]}]}], "|>"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"CreateDialog", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"DynamicModule", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"detector", "=", "0"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"include", "=", 
+           RowBox[{"{", "\"\<Slow\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"exclude", "=", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<Forced\>\"", ",", "\"\<Over\>\"", ",", "\"\<Dump\>\""}], 
+            "}"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"plot", "=", "\"\<Slow PH\>\""}]}], "\[IndentingNewLine]", 
+         "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Row", "[", 
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Column", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\"\<Detector\>\"", ",", 
+                  RowBox[{"RadioButtonBar", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "detector", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}], ",", 
+                    RowBox[{"Appearance", "->", "\"\<Vertical\>\""}]}], 
+                   "]"}]}], "}"}], ",", 
+                RowBox[{"BaselinePosition", "->", "Top"}]}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Spacer", "[", "20", "]"}], ",", "\[IndentingNewLine]", 
+              
+              RowBox[{"Column", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\"\<Include\>\"", ",", 
+                  RowBox[{"CheckboxBar", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "include", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Fast\>\"", ",", "\"\<Slow\>\""}], "}"}], ",", 
+                    RowBox[{"Appearance", "->", "\"\<Vertical\>\""}]}], 
+                   "]"}]}], "}"}], ",", 
+                RowBox[{"BaselinePosition", "->", "Top"}]}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Spacer", "[", "20", "]"}], ",", "\[IndentingNewLine]", 
+              
+              RowBox[{"Column", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\"\<Exclude\>\"", ",", 
+                  RowBox[{"CheckboxBar", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "exclude", "]"}], ",", 
+                    "flagBitNames", ",", 
+                    RowBox[{"Appearance", "->", "\"\<Vertical\>\""}]}], 
+                   "]"}]}], "}"}], ",", 
+                RowBox[{"BaselinePosition", "->", "Top"}]}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Spacer", "[", "20", "]"}], ",", "\[IndentingNewLine]", 
+              
+              RowBox[{"Column", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\"\<Plot\>\"", ",", 
+                  RowBox[{"RadioButtonBar", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "plot", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Slow PH\>\"", ",", "\"\<Fast PH\>\"", ",", 
+                    "\"\<Light Curve\>\""}], "}"}], ",", 
+                    RowBox[{"Appearance", "->", "\"\<Vertical\>\""}]}], 
+                   "]"}]}], "}"}], ",", 
+                RowBox[{"BaselinePosition", "->", "Top"}]}], "]"}]}], 
+             "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+           
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"eventPlot", "[", 
+             RowBox[{
+              RowBox[{"plotData", "[", "tag", "]"}], ",", "detector", ",", 
+              "include", ",", "exclude", ",", "plot"}], "]"}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"WindowTitle", "->", "tag"}]}], "\[IndentingNewLine]", "]"}]}], 
+   ")"}]}]], "Input",
+ CellChangeTimes->{{3.902077766818707*^9, 3.902077774631803*^9}, {
+   3.902077871748637*^9, 3.9020779815673647`*^9}, 3.9020780528561993`*^9, {
+   3.902078089109037*^9, 3.9020780989779463`*^9}, {3.902078131424528*^9, 
+   3.9020781667162123`*^9}, {3.902078281944707*^9, 3.902078292632678*^9}, {
+   3.902078365489109*^9, 3.90207837777985*^9}, {3.902078411560721*^9, 
+   3.9020784500060863`*^9}, {3.9020785030922937`*^9, 
+   3.9020785170774527`*^9}, {3.9020785986351023`*^9, 3.902078674517112*^9}, {
+   3.9020787957475843`*^9, 3.902078797581005*^9}, {3.902079922783382*^9, 
+   3.902079923476527*^9}, 3.902080091268147*^9, {3.902080293767776*^9, 
+   3.9020803729414587`*^9}, {3.90212982528281*^9, 3.902129855698104*^9}, {
+   3.902146404583783*^9, 3.902146468596147*^9}, {3.902146515286879*^9, 
+   3.902146546215185*^9}, {3.902146653331408*^9, 3.902146664707877*^9}, {
+   3.902150214745769*^9, 3.902150225456916*^9}, {3.90215051519175*^9, 
+   3.902150517095915*^9}, {3.9021589014613647`*^9, 3.902158961415248*^9}, {
+   3.9021590186527967`*^9, 3.902159060541584*^9}, {3.902159094961275*^9, 
+   3.902159141314987*^9}, {3.902159172108881*^9, 3.902159202693118*^9}, {
+   3.902159255591547*^9, 3.9021592674242268`*^9}, {3.902159429699765*^9, 
+   3.9021594686860933`*^9}, {3.9021595303050833`*^9, 3.902159568172566*^9}, {
+   3.9021596765743027`*^9, 3.902159689797411*^9}, {3.902159798628871*^9, 
+   3.9021598503761578`*^9}, {3.9021600182783318`*^9, 3.902160044174158*^9}, {
+   3.902160210832058*^9, 3.902160226799241*^9}, {3.902160274754552*^9, 
+   3.902160299756826*^9}, {3.9021603332412558`*^9, 3.902160340054955*^9}, {
+   3.902160389326933*^9, 3.9021603905704927`*^9}, {3.902160493559759*^9, 
+   3.9021604993499823`*^9}, {3.902160770302141*^9, 3.9021607856530867`*^9}, {
+   3.902161161621216*^9, 3.9021611826007853`*^9}, {3.902162222127018*^9, 
+   3.902162235973795*^9}, {3.902162290356598*^9, 3.902162300209697*^9}, {
+   3.9021623648104553`*^9, 3.902162390931106*^9}, {3.902162441156623*^9, 
+   3.90216245559579*^9}, 3.9021624892363777`*^9, {3.902333187132145*^9, 
+   3.9023332275698433`*^9}, 3.902333261044305*^9},
+ CellLabel->"In[8]:=",ExpressionUUID->"c93835c9-f3c4-455c-b213-94937d44a5b3"]
+},
+WindowSize->{860.4, 555.6},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.2 for Linux x86 (64-bit) (January 31, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d245ed97-8e09-47a0-a24a-74c554a972ba"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 636, 13, 29, "Input",ExpressionUUID->"365409b3-6603-494a-aaca-32c055fec0cc"],
+Cell[CellGroupData[{
+Cell[1219, 37, 339, 7, 29, "Input",ExpressionUUID->"1eb77e68-c8df-45e0-910b-3c5dfa34672e"],
+Cell[1561, 46, 459, 8, 33, "Output",ExpressionUUID->"61ae7ea7-24a6-42ad-acb2-949873e8ef71"]
+}, Open  ]],
+Cell[2035, 57, 841, 18, 50, "Input",ExpressionUUID->"4c9582b4-89c6-45cc-8108-f180d07782c2"],
+Cell[2879, 77, 354, 7, 35, "Text",ExpressionUUID->"bd6859a0-752f-4696-b7b3-8f72a578af2e"],
+Cell[3236, 86, 793, 17, 53, "Input",ExpressionUUID->"f49b52c2-691f-4ef7-a2b1-7018470071cc"],
+Cell[4032, 105, 290, 7, 35, "Text",ExpressionUUID->"4b53f863-4e7c-4c7f-a0c4-81e769cb3baa"],
+Cell[4325, 114, 1162, 29, 52, "Input",ExpressionUUID->"94f7fd97-0fcb-49bb-8fc9-25430c0b3f68"],
+Cell[5490, 145, 906, 19, 53, "Input",ExpressionUUID->"2fcbaf29-84ee-4c19-8db2-23b8f6bbcd90"],
+Cell[6399, 166, 959, 20, 53, "Input",ExpressionUUID->"d9b20022-ad94-4dae-a37e-d51fe25fbd04"],
+Cell[7361, 188, 6728, 132, 582, "Input",ExpressionUUID->"c93835c9-f3c4-455c-b213-94937d44a5b3"]
+}
+]
+*)
+
